@@ -7,6 +7,9 @@ import PastEvents from './components/PastEvents'
 import Poll from './components/Poll'
 
 const Sidebar = () => {
+
+    // List - make a list of things like restos, or places to visit
+
     return (
         <div className='bg-white w-64 h-max drop-shadow-md rounded-md'>
             <div className='pt-5 pl-4 pr-4 pb-3'>
