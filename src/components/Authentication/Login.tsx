@@ -1,14 +1,39 @@
-import React from 'react'
+import React, { useState } from 'react'
 import authProps from '../../models/auth/AuthModel'
+import { signInWithEmailAndPassword } from "firebase/auth"
+import { auth } from "../../firebase-config"
 
-const Login = ({ toggleIsLogin }: authProps) => {
+interface UserInput {
+    [username: string]: any
+}
 
-    const login = () =>{
-        
+const Login = ({ toggleIsLogin, setUser }: authProps) => {
+
+    const [userInput, setUserInput] = useState<UserInput>({})
+
+    const handleUserInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+        userInput[e.currentTarget.name] = e.currentTarget.value
+        setUserInput({ ...userInput })
+    }
+
+    const handleRegisterSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
+
+        try {
+
+            const loginUser = await signInWithEmailAndPassword(auth, userInput["email"], userInput["password"])
+            console.log(loginUser)
+            setUser(loginUser)
+
+
+        } catch (error) {
+            console.log("ERROR IN LOGIN: " + error)
+        }
+
     }
 
     return (
-        <div>
+        <form onSubmit={handleRegisterSubmit}>
             <div className='mb-8 text-center'>
                 <h3 className='text-3xl font-semibold mb-4'>Welcome back!</h3>
                 <span className='text-slate-500'>Please enter your login details</span>
@@ -16,12 +41,12 @@ const Login = ({ toggleIsLogin }: authProps) => {
             <div className='mb-6'>
                 <div className='mb-6'>
                     <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
-                    <input type="text" id="first_name" className="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 
+                    <input onChange={handleUserInput} name="email" type="text" id="first_name" className="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 
                         dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter your username" />
                 </div>
                 <div>
                     <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
-                    <input type="password" id="password" className="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 
+                    <input onChange={handleUserInput} name='password' type="password" id="password" className="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 
                         dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="*******" />
                 </div>
 
@@ -49,7 +74,7 @@ const Login = ({ toggleIsLogin }: authProps) => {
                 <span >Don't have an account? <span className='text-orange-600' >Sign up</span> </span>
             </div>
 
-        </div>
+        </form>
     )
 }
 
