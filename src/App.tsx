@@ -21,7 +21,11 @@ function App() {
 
   return (
     <div className="App">
-      {user === undefined ? <Authentication setUser={setUser}></Authentication>
+      {/* {user === undefined ? <Authentication setUser={setUser}></Authentication>
+        :
+        <Main ></Main>} */}
+
+      {user === undefined ? <Main ></Main>
         :
         <Main ></Main>}
 
