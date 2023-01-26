@@ -1,10 +1,11 @@
 import React from 'react'
-import Calendar from './components/Calendar'
-import Chat from './components/Chat'
-import CloseSidebarBtn from './components/CloseSidebarBtn'
-import Dashboard from './components/Dashboard'
-import PastEvents from './components/PastEvents'
-import Poll from './components/Poll'
+import Dashboard from '../Dashboard/Dashboard'
+import Calendar from './Components/Calendar'
+import Chat from './Components/Chat'
+import CloseSidebarBtn from './Components/CloseSidebarBtn'
+import PastEvents from './Components/PastEvents'
+import Poll from './Components/Poll'
+
 
 const Sidebar = () => {
 

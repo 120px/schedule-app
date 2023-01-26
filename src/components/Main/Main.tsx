@@ -1,18 +1,19 @@
 import React from 'react'
-import Dashboard from '../Dashboard/Dashboard'
-import MyEvents from '../Sidebar/components/MyEvents'
-import Sidebar from '../Sidebar/Sidebar'
+import Dashboard from './Dashboard/Dashboard'
+import Sidebar from './Sidebar/Sidebar'
 
-interface MainProps{
-    
+interface MainProps {
+
 }
 
-const Main = ({}) => {
+const Main = ({ }) => {
     return (
-        <div className='flex flex-row gap-10'>
-            <Sidebar></Sidebar>
-            <Dashboard></Dashboard>
-            <MyEvents></MyEvents>
+        <div className=''>
+            <div className='flex flex-row gap-10'>
+                <Sidebar></Sidebar>
+                <Dashboard></Dashboard>
+                
+            </div>
         </div>
     )
 }

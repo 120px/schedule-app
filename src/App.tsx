@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import './App.css';
 import Authentication from './components/Authentication/Authentication';
-import Dashboard from './components/Dashboard/Dashboard';
+import Dashboard from './components/Main/Dashboard/Dashboard';
+import CreateEvent from './components/Main/Dashboard/Events/CreateEvent';
 import Main from './components/Main/Main';
-import MyEvents from './components/Sidebar/components/MyEvents';
-import Sidebar from './components/Sidebar/Sidebar';
+import Sidebar from './components/Main/Sidebar/Sidebar';
 import UserModel from './models/auth/UserModel';
 
 function App() {
@@ -25,9 +25,11 @@ function App() {
         :
         <Main ></Main>} */}
 
-      {user === undefined ? <Main ></Main>
+      {/* {user === undefined ? <Main ></Main>
         :
-        <Main ></Main>}
+        <Main ></Main>} */}
+
+        <CreateEvent></CreateEvent>
 
     </div>
   );
