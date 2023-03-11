@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useState } from 'react'
+import CreateEvent from '../../../../models/auth/Event/CreateEvent'
 
 const CreateEvent = () => {
 
@@ -6,10 +7,29 @@ const CreateEvent = () => {
     //https://dribbble.com/shots/18964945-Calendar-create-event
     //https://dribbble.com/shots/3085179-Create-event-flow-Under-construction
 
+    const [userInput, setUserInput] = useState<CreateEvent>({
+        address: "", creatorId: "abc", dateCreated: "", dateFor: "",
+        description: "generic", group: "123", location: "happy", members: ["asd"],
+        name: "bday bash", reservation: false, urgent: true
+    })
+
+    const handleUserInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+        // userInput[e.currentTarget.name] = e.currentTarget.value
+
+        // setUserInput({})
+    }
+
+    const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+
+        console.log(userInput)
+    }
+
     return (
+
         <div className='shadow-xl max-w-xl bg-white h-fit mx-auto p-20'>
 
-            <form >
+            <form onSubmit={handleFormSubmit}>
                 <div className='mb-8 '>
                     <h3 className='text-3xl font-semibold mb-4'>Create an event</h3>
                     <span className='text-slate-500'>Create a new event & notify everyone in your group</span>
@@ -39,7 +59,7 @@ const CreateEvent = () => {
 
                 <div className='mb-6'>
                     <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Address</label>
-                    <input name="email" id="first_name" className="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 
+                    <input name="eventAddress" id="first_name" className="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 
                         dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="123 Parc Street" />
 
                 </div>
@@ -64,7 +84,7 @@ const CreateEvent = () => {
                         <button className='bg-white-full rounded-md text-gray-500 py-3'>Cancel</button>
                     </div>
                     <div className='w-4/12'>
-                        <button className='bg-orange-400 w-full rounded-lg text-white py-3 hover:bg-orange-600'>Create</button>
+                        <button type='submit' className='bg-orange-400 w-full rounded-lg text-white py-3 hover:bg-orange-600'>Create</button>
                     </div>
 
                 </div>
