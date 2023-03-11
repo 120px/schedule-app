@@ -1,5 +1,5 @@
 import React from 'react'
-import MyEvents from '../Sidebar/Components/MyEvents'
+import MyEvents from './Events/MyEvents'
 import QuickLinks from './QuickLinks/QuickLinks'
 
 

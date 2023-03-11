@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Dashboard = () => {
+const DashboardRedirect = () => {
     return (
         <div className='flex flex-row hover:bg-orange-300 rounded-md px-1 py-1 hover:drop-shadow-md'>
             <div className=''>
@@ -14,4 +14,4 @@ const Dashboard = () => {
     )
 }
 
-export default Dashboard
+export default DashboardRedirect
