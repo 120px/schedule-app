@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import CreateEvent from '../../../../models/auth/Event/CreateEvent'
+import { collection }
+import CreateEventInfo from '../../../../models/Event/CreateEventInfo'
 
 const CreateEvent = () => {
 
@@ -7,7 +8,7 @@ const CreateEvent = () => {
     //https://dribbble.com/shots/18964945-Calendar-create-event
     //https://dribbble.com/shots/3085179-Create-event-flow-Under-construction
 
-    const [userInput, setUserInput] = useState<CreateEvent>({
+    const [userInput, setUserInput] = useState<CreateEventInfo>({
         address: "", creatorId: "abc", dateCreated: "", dateFor: "",
         description: "generic", group: "123", location: "happy", members: ["asd"],
         name: "bday bash", reservation: false, urgent: true

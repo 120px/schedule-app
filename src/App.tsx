@@ -25,11 +25,11 @@ function App() {
         :
         <Main ></Main>} */}
 
-      {user === undefined ? <Main ></Main>
+      {/* {user === undefined ? <Main ></Main>
         :
-        <Main ></Main>}
+        <Main ></Main>} */}
 
-        {/* <CreateEvent></CreateEvent> */}
+        <CreateEvent></CreateEvent>
 
     </div>
   );
