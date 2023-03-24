@@ -32,7 +32,7 @@ const Sidebar = () => {
 
                 {/* CONTENT / BUTTON / ICON AREA */}
                 <div className='flex flex-col gap-3'>
-                    <Dashboard></Dashboard>
+                    {/* <Dashboard></Dashboard> */}
                     <Chat></Chat>
                     <Calendar></Calendar>
                     <Poll></Poll>

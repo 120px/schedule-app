@@ -1,4 +1,4 @@
-export default interface CreateEvent{
+export default interface CreateEventInfo{
 
     creatorId: string,
     group: string,

@@ -9,7 +9,7 @@ interface MainProps {
 const Main = ({ }) => {
     return (
         <div className=''>
-            <div className='flex flex-row gap-10'>
+            <div className='flex flex-row gap-10 '>
                 <Sidebar></Sidebar>
                 <Dashboard></Dashboard>
                 

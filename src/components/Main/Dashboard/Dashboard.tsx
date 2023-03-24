@@ -1,4 +1,5 @@
 import React from 'react'
+import CreateEventInfo from '../../../models/auth/Event/CreateEventInfo'
 import MyEvents from '../Sidebar/Components/MyEvents'
 import QuickLinks from './QuickLinks/QuickLinks'
 
@@ -11,7 +12,13 @@ const Dashboard = () => {
     // Recently added polls
     // Recently added events
 
-    const events = 3
+    // const events: CreateEventInfo = {
+    //     address:"",
+    //     creatorId: "",
+    //     dateCreated: "",
+    //     dateFor: "",
+
+    // }
 
     return (
         <div className='flex flex-1 flex-row'>

@@ -1,4 +1,5 @@
 import React from 'react'
+import DashboardEvent from '../../Dashboard/Events/DashboardEvent'
 
 
 //https://dribbble.com/shots/15627005-Contentstack-CMS-UI-Updates-Content-Models
@@ -15,6 +16,8 @@ const MyEvents = () => {
                 <div className=''>
                     <span className='text-xl font-bold'>Upcoming Events</span>
                     
+                    <DashboardEvent></DashboardEvent>
+
                 </div>
             </div>
         </div>

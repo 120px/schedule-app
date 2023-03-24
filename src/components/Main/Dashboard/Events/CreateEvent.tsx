@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import CreateEvent from '../../../../models/auth/Event/CreateEvent'
+import CreateEventInfo from '../../../../models/auth/Event/CreateEventInfo'
+import { auth } from "../../../../firebase-config"
 
 const CreateEvent = () => {
 
@@ -7,20 +8,24 @@ const CreateEvent = () => {
     //https://dribbble.com/shots/18964945-Calendar-create-event
     //https://dribbble.com/shots/3085179-Create-event-flow-Under-construction
 
-    const [userInput, setUserInput] = useState<CreateEvent>({
+    const [userInput, setUserInput] = useState<CreateEventInfo>({
         address: "", creatorId: "abc", dateCreated: "", dateFor: "",
         description: "generic", group: "123", location: "happy", members: ["asd"],
         name: "bday bash", reservation: false, urgent: true
     })
 
     const handleUserInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-        userInput[e.currentTarget.name] = e.currentTarget.value
+        // userInput[e.currentTarget.name] = e.currentTarget.value
 
-        setUserInput({})
+        // auth.
+
+        // setUserInput({})
     }
 
     const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+
+        // const newEvent = setDoc
 
         console.log(userInput)
     }
