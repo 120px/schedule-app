@@ -1,6 +1,5 @@
 import React from 'react'
-import CreateEventInfo from '../../../models/auth/Event/CreateEventInfo'
-import MyEvents from '../Sidebar/Components/MyEvents'
+import MyEvents from './Events/MyEvents'
 import QuickLinks from './QuickLinks/QuickLinks'
 
 

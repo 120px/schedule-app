@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Poll = () => {
+const Sidebar_Poll = () => {
     return (
         <div className='flex flex-row hover:bg-orange-300 rounded-md px-1 py-1 hover:drop-shadow-md'>
             <div className=''>
@@ -15,4 +15,4 @@ const Poll = () => {
     )
 }
 
-export default Poll
+export default Sidebar_Poll

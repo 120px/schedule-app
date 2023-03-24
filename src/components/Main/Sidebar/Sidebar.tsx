@@ -1,11 +1,10 @@
 import React from 'react'
-import Dashboard from '../Dashboard/Dashboard'
-import Calendar from './Components/Calendar'
-import Chat from './Components/Chat'
 import CloseSidebarBtn from './Components/CloseSidebarBtn'
-import PastEvents from './Components/PastEvents'
-import Poll from './Components/Poll'
-
+import DashboardRedirect from './Components/DashboardRedirect'
+import Sidebar_Calendar from './Components/Sidebar_Calendar'
+import Sidebar_Chat from './Components/Sidebar_Chat'
+import Sidebar_Poll from './Components/Sidebar_Poll'
+import Sidebar_PastEvents from './Components/Sidebar_PastEvents'
 
 const Sidebar = () => {
 
@@ -32,11 +31,11 @@ const Sidebar = () => {
 
                 {/* CONTENT / BUTTON / ICON AREA */}
                 <div className='flex flex-col gap-3'>
-                    {/* <Dashboard></Dashboard> */}
-                    <Chat></Chat>
-                    <Calendar></Calendar>
-                    <Poll></Poll>
-                    <PastEvents></PastEvents>
+                    <DashboardRedirect></DashboardRedirect>
+                    <Sidebar_Chat></Sidebar_Chat>
+                    <Sidebar_Calendar></Sidebar_Calendar>
+                    <Sidebar_Poll></Sidebar_Poll>
+                    <Sidebar_PastEvents></Sidebar_PastEvents>
                 </div>
 
                 {/* SETTINGS AREA */}

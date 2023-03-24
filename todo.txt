@@ -1,0 +1,12 @@
+user:
+    - create account
+    - sign in
+
+groups:
+    - create group
+    - invite link
+    - join group
+
+events:
+    - create event
+
