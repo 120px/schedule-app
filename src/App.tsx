@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import './App.css';
+import './index.css';
 import Authentication from './components/Authentication/Authentication';
 import Dashboard from './components/Main/Dashboard/Dashboard';
 import CreateEvent from './components/Main/Dashboard/Events/CreateEvent';
@@ -20,16 +20,16 @@ function App() {
   console.log(user)
 
   return (
-    <div className="App">
-      {/* {user === undefined ? <Authentication setUser={setUser}></Authentication>
-        :
-        <Main ></Main>} */}
-
-      {user === undefined ? <Main ></Main>
+    <div className="">
+      {user === undefined ? <Authentication setUser={setUser}></Authentication>
         :
         <Main ></Main>}
 
-        {/* <CreateEvent></CreateEvent> */}
+      {/* {user === undefined ? <Main ></Main>
+        :
+        <Main ></Main>} */}
+
+      {/* <CreateEvent></CreateEvent> */}
 
     </div>
   );
