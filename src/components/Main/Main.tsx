@@ -1,12 +1,13 @@
 import React from 'react'
 import Dashboard from './Dashboard/Dashboard'
 import Sidebar from './Sidebar/Sidebar'
+import { auth } from '../../firebase-config'
 
 interface MainProps {
 
 }
 
-const Main = ({ }) => {
+const Main = ({}) => {
     return (
         <div className=''>
             <div className='flex flex-row gap-10 '>

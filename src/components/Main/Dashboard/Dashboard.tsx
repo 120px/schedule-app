@@ -1,6 +1,7 @@
 import React from 'react'
 import MyEvents from './Events/MyEvents'
 import QuickLinks from './QuickLinks/QuickLinks'
+import { auth } from '../../../firebase-config'
 
 
 //https://dribbble.com/shots/19419939-Admin-dashboard-analytics-UX
@@ -22,7 +23,8 @@ const Dashboard = () => {
     return (
         <div className='flex flex-1 flex-row'>
             <MyEvents></MyEvents>
-            <QuickLinks></QuickLinks>
+            {/* <QuickLinks></QuickLinks> */}
+            
             
 
         </div>
