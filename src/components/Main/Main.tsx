@@ -7,15 +7,14 @@ interface MainProps {
 
 }
 
-const Main = ({}) => {
+const Main = ({ }) => {
     return (
-        <div className=''>
-            <div className='flex flex-row gap-10 '>
-                <Sidebar></Sidebar>
-                <Dashboard></Dashboard>
-                
-            </div>
+        <div className='flex flex-row gap-10 '>
+            <Sidebar></Sidebar>
+            <Dashboard></Dashboard>
+
         </div>
+
     )
 }
 

@@ -10,15 +10,11 @@ const MyEvents = () => {
     const currentEvents = 0
 
     return (
-        <div className='basis-3/4'>
-            <div className=''>
-                <div className=''>
-                    <span className='text-xl font-bold'>Upcoming Events</span>
-                    
-                    <DashboardEvent></DashboardEvent>
+        <div className='w-full'>
+            <p className='text-xl font-bold text-center'>Upcoming Events</p>
 
-                </div>
-            </div>
+            <DashboardEvent></DashboardEvent>
+
         </div>
     )
 }
