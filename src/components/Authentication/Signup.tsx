@@ -19,7 +19,7 @@ interface FormValidation {
 
 const Signup = ({ toggleIsLogin, setUser }: AuthModel) => {
 
-    const [userInput, setUserInput] = useState<UserInput>({ password: "" })
+    const [userInput, setUserInput] = useState<UserInput>({})
     const [isPasswordMatching, setIsPasswordMatching] = useState<Boolean>(false)
 
     const { register, handleSubmit, formState: { errors } } = useForm<FormValidation>({

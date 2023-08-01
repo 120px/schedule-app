@@ -1,26 +1,41 @@
 import React, { useState } from 'react'
 import CreateEventInfo from '../../../../models/Event/CreateEventInfo'
+import { doc, setDoc } from "firebase/firestore"; 
+import { db } from '../../../../firebase-config';
+import { auth } from "../../../../firebase-config"
+import { getDatabase, ref, set } from "firebase/database";
 
-const CreateEvent = () => {
+
+interface Props{
+    onClick: () => void
+}
+
+const CreateEvent = ({onClick} : Props) => {
 
     //https://dribbble.com/shots/14182509-Create-event
     //https://dribbble.com/shots/18964945-Calendar-create-event
     //https://dribbble.com/shots/3085179-Create-event-flow-Under-construction
 
+    //GENERATE RANDOM ID FOR EACH EVENT
+
     const [userInput, setUserInput] = useState<CreateEventInfo>({
-        address: "", creatorId: "abc", dateCreated: "", dateFor: "",
-        description: "generic", group: "123", location: "happy", members: ["asd"],
-        name: "bday bash", reservation: false, urgent: true
+        address: "", creatorId: auth.currentUser!.uid, dateCreated: "", dateFor: "",
+        description: "", group: "", location: "", members: [""],
+        name: "", reservation: false, urgent: false
     })
 
     const handleUserInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-        // userInput[e.currentTarget.name] = e.currentTarget.value
+        userInput[e.currentTarget.name] = e.currentTarget.value
+        setUserInput({ ...userInput })
 
-        // setUserInput({})
     }
 
     const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+
+        await setDoc(doc(db, "event", "randomID",), {
+            userInput
+        })
 
         console.log(userInput)
     }
@@ -81,7 +96,7 @@ const CreateEvent = () => {
                     <div className='flex justify-between mt-10'>
 
                         <div className='w-4/12 mx-auto'>
-                            <button className='bg-white-full rounded-md text-gray-500 py-3'>Cancel</button>
+                            <button onClick={onClick} className='bg-white-full rounded-md text-gray-500 py-3'>Cancel</button>
                         </div>
                         <div className='w-4/12'>
                             <button type='submit' className='bg-orange-400 w-full rounded-lg text-white py-3 hover:bg-orange-600'>Create</button>

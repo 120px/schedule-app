@@ -2,7 +2,6 @@ export default interface CreateEventInfo{
 
     creatorId: string,
     group: string,
-
     address: string,
     dateCreated: string,
     dateFor: string,

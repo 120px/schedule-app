@@ -9,15 +9,14 @@ const Portfolio = () => {
     const [showCreateEventModal, setShowCreateEventModal] = useState<Boolean>()
 
     const handleCreateEventClick = () => {
-        console.log("Clicked event")
-        setShowCreateEventModal(true)
+        setShowCreateEventModal((prev) => !prev)
 
     }
 
     return (
         <div className="basis-1/6 flex flex-col items-center justify-between">
 
-            {showCreateEventModal ? <CreateEvent></CreateEvent> : null}
+            {showCreateEventModal ? <CreateEvent onClick={handleCreateEventClick}></CreateEvent> : null}
 
             <div className="flex flex-col items-center">
                 {auth.currentUser?.photoURL ? auth.currentUser?.photoURL :
