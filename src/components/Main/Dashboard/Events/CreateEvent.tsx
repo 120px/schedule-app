@@ -19,7 +19,7 @@ const CreateEvent = ({onClick} : Props) => {
     //GENERATE RANDOM ID FOR EACH EVENT
 
     const [userInput, setUserInput] = useState<CreateEventInfo>({
-        address: "", creatorId: auth.currentUser!.uid, dateCreated: "", dateFor: "",
+        address: "", creatorId: auth.currentUser!.uid, dateCreated: new Date().toLocaleDateString(), dateFor: "",
         description: "", group: "", location: "", members: [""],
         name: "", reservation: false, urgent: false
     })
