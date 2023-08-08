@@ -4,6 +4,7 @@ import { doc, setDoc } from "firebase/firestore";
 import { db } from '../../../../firebase-config';
 import { auth } from "../../../../firebase-config"
 import { getDatabase, ref, set } from "firebase/database";
+import { ObjectType } from 'typescript';
 
 
 interface Props{
@@ -26,6 +27,7 @@ const CreateEvent = ({onClick} : Props) => {
 
     const handleUserInput = (e: React.ChangeEvent<HTMLInputElement>) => {
         userInput[e.currentTarget.name] = e.currentTarget.value
+        console.log(e.currentTarget.name)
         setUserInput({ ...userInput })
 
     }
@@ -68,13 +70,13 @@ const CreateEvent = ({onClick} : Props) => {
 
                     <div className='mb-4'>
                         <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
-                        <textarea name="email" id="first_name" className="h-20 bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 
+                        <input onChange={handleUserInput} name="description" id="description" className="h-20 bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 
                         dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Give your friends a brief summary of what's going on at the event" />
                     </div>
 
                     <div className='mb-6'>
                         <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Address</label>
-                        <input name="eventAddress" id="first_name" className="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 
+                        <input onChange={handleUserInput}  name="eventAddress" id="first_name" className="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 
                         dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="123 Parc Street" />
 
                     </div>

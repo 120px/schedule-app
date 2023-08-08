@@ -11,7 +11,7 @@ const Sidebar = () => {
     // List - make a list of things like restos, or places to visit
 
     return (
-        <div className='bg-white w-64 h-max drop-shadow-md rounded-md'>
+        <div className='bg-white w-64 h-screen drop-shadow-md rounded-md'>
             <div className='pt-5 pl-4 pr-4 pb-3'>
                 {/* TITLE AREA */}
                 <div className='flex flex-row justify-between mb-7'>
