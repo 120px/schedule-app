@@ -20,8 +20,7 @@ const Portfolio = () => {
 
             <div className="flex flex-col items-center">
                 {auth.currentUser?.photoURL ? auth.currentUser?.photoURL :
-                    <div className="w-12 h-12 bg-red-400 rounded-full"></div>
-                }
+                    <div className="w-12 h-12 bg-red-400 rounded-full"></div>}
                 {auth.currentUser ? <h1>{auth.currentUser?.displayName}</h1> : <span>USERNAME HERE</span>}
             </div>
 

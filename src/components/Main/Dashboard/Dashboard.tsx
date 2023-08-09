@@ -17,6 +17,9 @@ const Dashboard = () => {
     // Recently added polls
     // Recently added events
 
+    // Group activity
+    //  newly created events / polls etc
+
     // const events: CreateEventInfo = {
     //     address:"",
     //     creatorId: "",
