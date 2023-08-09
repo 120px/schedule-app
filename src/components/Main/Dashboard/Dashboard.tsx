@@ -1,14 +1,14 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import MyEvents from './Events/MyEvents'
 import QuickLinks from './QuickLinks/QuickLinks'
-import { auth } from '../../../firebase-config'
+import { auth, db } from '../../../firebase-config';
 import Portfolio from './Portfolio/Portfolio'
+import { getDocs, collection, getDoc, doc } from 'firebase/firestore';
 
 
 //https://dribbble.com/shots/19419939-Admin-dashboard-analytics-UX
 // https://dribbble.com/shots/20203136-Citrix-Admin-Dashboard-Analytics-UX-UI
 const Dashboard = () => {
-
     // Right side: 
     // Upcoming events
 
@@ -28,14 +28,34 @@ const Dashboard = () => {
 
     // }
 
+    //David was here -2023
+
+    const [userGroups, setUserGroups] = useState<any>()
+    const userGroupCollectionRef = doc(db, "user", auth.currentUser!.uid)
+
+    useEffect(() => {
+        // console.log(auth.currentUser?.uid)
+        const getUserGroups = async () =>{
+            const data = await getDoc(userGroupCollectionRef)
+
+            if (data)
+                console.log(data.data())
+        }
+
+        getUserGroups()
+    
+        console.log("UG: " + userGroups)
+      return () => {
+        
+      }
+    }, [])
+    
     return (
         <div className='flex flex-row w-full'>
             <MyEvents></MyEvents>
             {/* <QuickLinks></QuickLinks> */}
             <Portfolio></Portfolio>
             
-            
-
         </div>
     )
 }
