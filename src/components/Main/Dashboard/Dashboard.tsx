@@ -5,7 +5,6 @@ import { auth, db } from '../../../firebase-config';
 import Portfolio from './Portfolio/Portfolio'
 import { getDocs, collection, getDoc, doc } from 'firebase/firestore';
 
-
 //https://dribbble.com/shots/19419939-Admin-dashboard-analytics-UX
 // https://dribbble.com/shots/20203136-Citrix-Admin-Dashboard-Analytics-UX-UI
 const Dashboard = () => {
@@ -28,8 +27,6 @@ const Dashboard = () => {
 
     // }
 
-    //David was here -2023
-
     const [userGroups, setUserGroups] = useState<any>()
     const userGroupCollectionRef = doc(db, "user", auth.currentUser!.uid)
 
@@ -40,6 +37,8 @@ const Dashboard = () => {
 
             if (data)
                 console.log(data.data())
+            else
+                console.log("no groups rn")
         }
 
         getUserGroups()

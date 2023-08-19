@@ -26,7 +26,7 @@ const CreateEvent = ({onClick} : Props) => {
     })
 
     const handleUserInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-        userInput[e.currentTarget.name] = e.currentTarget.value
+        // userInput[e.currentTarget.name] = e.currentTarget.value
         console.log(e.currentTarget.name)
         setUserInput({ ...userInput })
 

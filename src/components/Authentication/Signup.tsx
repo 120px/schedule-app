@@ -2,9 +2,10 @@ import userEvent from '@testing-library/user-event'
 import React, { useState } from 'react'
 import { User, browserLocalPersistence, browserSessionPersistence, createUserWithEmailAndPassword, setPersistence, updateProfile } from "firebase/auth"
 import AuthModel from '../../models/auth/AuthModel'
-import { auth } from "../../firebase-config"
+import { auth, db } from "../../firebase-config"
 import { useForm, SubmitHandler } from "react-hook-form";
 import { FirebaseApp } from 'firebase/app'
+import { doc, setDoc } from 'firebase/firestore'
 
 interface UserInput {
     [username: string]: any
@@ -46,12 +47,15 @@ const Signup = ({ toggleIsLogin, setUser }: AuthModel) => {
 
                 setPersistence(auth, browserSessionPersistence)
                     .then(() => {
-                        return createUserWithEmailAndPassword(auth, data.email, data.password).then(function (data) {
+                        createUserWithEmailAndPassword(auth, data.email, data.password).then(function (data) {
                             updateProfile(data.user, { displayName: "DOG" })
                         })
+                            .then(() => {
+                                setDoc(doc(db, "user", auth.currentUser!.uid,), {
+                                    userInput
+                                })
+                            })
                     })
-                
-
             }
             catch (error) {
                 console.log("ERROR OCCURED: " + error)
