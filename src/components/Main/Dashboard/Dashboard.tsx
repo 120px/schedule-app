@@ -31,19 +31,20 @@ const Dashboard = () => {
     const userGroupCollectionRef = doc(db, "user", auth.currentUser!.uid)
 
     useEffect(() => {
-        // console.log(auth.currentUser?.uid)
+
         const getUserGroups = async () =>{
             const data = await getDoc(userGroupCollectionRef)
 
             if (data)
-                console.log(data.data())
+                console.log("Data: " + setUserGroups(data.data()))
             else
                 console.log("no groups rn")
         }
 
         getUserGroups()
+        console.log(userGroups)
     
-        console.log("UG: " + userGroups)
+        // console.log("UG: " + userGroups)
       return () => {
         
       }

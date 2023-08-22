@@ -25,7 +25,7 @@ const Portfolio = () => {
             </div>
 
             <div className="flex flex-col items-center">
-                <p className="text-sm">groups</p>
+                {}
             </div>
 
             <div className="flex flex-col items-center">

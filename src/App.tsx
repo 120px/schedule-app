@@ -30,12 +30,11 @@ function App() {
     }
   }, [])
 
-  console.log(auth.currentUser)
-  console.log(localStorage)
+  console.log(user)
 
   return (
     <div className="">
-      {user ? <Main /> : <Authentication />}
+      {user ? <Main user={user}/> : <Authentication />}
 
     </div>
   );
