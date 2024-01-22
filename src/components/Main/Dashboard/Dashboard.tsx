@@ -30,24 +30,24 @@ const Dashboard = () => {
     const [userGroups, setUserGroups] = useState<any>()
     const userGroupCollectionRef = doc(db, "user", auth.currentUser!.uid)
 
-    useEffect(() => {
-        // console.log(auth.currentUser?.uid)
-        const getUserGroups = async () =>{
-            const data = await getDoc(userGroupCollectionRef)
+    // useEffect(() => {
 
-            if (data)
-                console.log(data.data())
-            else
-                console.log("no groups rn")
-        }
+    //     const getUserGroups = async () =>{
+    //         const data = await getDoc(userGroupCollectionRef)
 
-        getUserGroups()
+    //         if (data)
+    //             setUserGroups(data.data())
+    //         else
+    //             console.log("no groups rn")
+    //     }
+
+    //     getUserGroups()
+    //     console.log(userGroups)
     
-        console.log("UG: " + userGroups)
-      return () => {
+    //   return () => {
         
-      }
-    }, [])
+    //   }
+    // }, [])
     
     return (
         <div className='flex flex-row w-full'>
