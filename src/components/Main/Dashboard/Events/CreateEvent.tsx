@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
 import CreateEventInfo from '../../../../models/Event/CreateEventInfo'
-import { doc, setDoc } from "firebase/firestore"; 
+import { addDoc, collection, doc, setDoc } from "firebase/firestore"; 
 import { db } from '../../../../firebase-config';
 import { auth } from "../../../../firebase-config"
 import { getDatabase, ref, set } from "firebase/database";
-import { ObjectType } from 'typescript';
 
 
 interface Props{
@@ -35,11 +34,11 @@ const CreateEvent = ({onClick} : Props) => {
     const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        await setDoc(doc(db, "event", "randomID",), {
+        const data = await addDoc(collection(db, "events"),{
             userInput
         })
 
-        console.log(userInput)
+        console.log(data)
     }
 
     return (
