@@ -2,13 +2,12 @@ import { useEffect, useState } from 'react';
 import './index.css';
 import { auth, db } from './firebase-config';
 import Authentication from './components/Authentication/Authentication';
-import Dashboard from './components/Main/Dashboard/Dashboard';
-import CreateEvent from './components/Main/Dashboard/Events/CreateEvent';
 import Main from './components/Main/Main';
 import Sidebar from './components/Main/Sidebar/Sidebar';
 import UserModel from './models/auth/UserModel';
 import { User, onAuthStateChanged } from 'firebase/auth';
 import { doc, getDoc } from 'firebase/firestore';
+import { Outlet } from 'react-router-dom';
 
 function App() {
 
@@ -24,7 +23,7 @@ function App() {
   const getUserGroups = async () => {
     const userGroupCollectionRef = doc(db, "user", user!.uid)
     const data = await getDoc(userGroupCollectionRef)
-    
+
 
     if (data)
       setUserGroups(data.data())
@@ -47,9 +46,8 @@ function App() {
   }, [])
 
   return (
-    <div className="">
+    <div className='flex'>
       {user ? <Main user={user} /> : <Authentication />}
-
     </div>
   );
 }

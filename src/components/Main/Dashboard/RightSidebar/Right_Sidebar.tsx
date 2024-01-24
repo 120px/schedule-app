@@ -4,7 +4,7 @@ import { faPlusCircle } from "@fortawesome/free-solid-svg-icons"
 import { useState } from "react"
 import CreateEvent from "../Events/CreateEvent"
 
-const Portfolio = () => {
+const Right_Sidebar = () => {
 
     const [showCreateEventModal, setShowCreateEventModal] = useState<Boolean>()
 
@@ -25,16 +25,15 @@ const Portfolio = () => {
             </div>
 
             <div className="flex flex-col items-center">
-                {}
+                { }
             </div>
 
             <div className="flex flex-col items-center">
                 <FontAwesomeIcon onClick={handleCreateEventClick} icon={faPlusCircle} fill="black" color="black"></FontAwesomeIcon>
-
             </div>
         </div>
 
     )
 }
 
-export default Portfolio
+export default Right_Sidebar

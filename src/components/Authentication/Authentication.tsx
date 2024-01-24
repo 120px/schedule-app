@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Login from './Login'
 import Signup from './Signup'
-import AuthModel from '../../models/auth/AuthModel' 
+import AuthModel from '../../models/auth/AuthModel'
 
 const Authentication = ({ setUser }: any) => {
 
