@@ -16,8 +16,6 @@ const CreateEvent = ({onClick} : Props) => {
     //https://dribbble.com/shots/18964945-Calendar-create-event
     //https://dribbble.com/shots/3085179-Create-event-flow-Under-construction
 
-    //GENERATE RANDOM ID FOR EACH EVENT
-
     const [userInput, setUserInput] = useState<CreateEventInfo>({
         address: "", creatorId: auth.currentUser!.uid, dateCreated: new Date().toLocaleDateString(), dateFor: "",
         description: "", group: "", location: "", members: [""],

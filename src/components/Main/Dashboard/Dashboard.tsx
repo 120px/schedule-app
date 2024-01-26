@@ -19,35 +19,8 @@ const Dashboard = () => {
     // Group activity
     //  newly created events / polls etc
 
-    // const events: CreateEventInfo = {
-    //     address:"",
-    //     creatorId: "",
-    //     dateCreated: "",
-    //     dateFor: "",
-
-    // }
-
     const [userGroups, setUserGroups] = useState<any>()
     const userGroupCollectionRef = doc(db, "user", auth.currentUser!.uid)
-
-    // useEffect(() => {
-
-    //     const getUserGroups = async () =>{
-    //         const data = await getDoc(userGroupCollectionRef)
-
-    //         if (data)
-    //             setUserGroups(data.data())
-    //         else
-    //             console.log("no groups rn")
-    //     }
-
-    //     getUserGroups()
-    //     console.log(userGroups)
-    
-    //   return () => {
-        
-    //   }
-    // }, [])
     
     return (
         <div className='flex flex-row w-full'>

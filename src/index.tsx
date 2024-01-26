@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Dashboard from './components/Main/Dashboard/Dashboard';
 import CreateGroup from './components/Main/Dashboard/Groups/CreateGroup';
+import MyGroups from './components/Main/Dashboard/Groups/MyGroups';
 
 const router = createBrowserRouter([
   {
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
       {
         path: "/creategroup",
         element: <CreateGroup />
+      },
+      {
+        path: "/mygroups",
+        element: <MyGroups />
       },
     ]
   },

@@ -44,15 +44,15 @@ const Signup = ({ toggleIsLogin, setUser }: AuthModel) => {
         }
         else {
             try {
-
                 setPersistence(auth, browserSessionPersistence)
                     .then(() => {
                         createUserWithEmailAndPassword(auth, data.email, data.password).then(function (data) {
                             updateProfile(data.user, { displayName: "DOG" })
                         })
                             .then(() => {
-                                setDoc(doc(db, "user", auth.currentUser!.uid,), {
-                                    userInput
+                                setDoc(doc(db, "users", auth.currentUser!.uid,), {
+                                    data,
+                                    groups: [""]
                                 })
                             })
                     })
@@ -67,11 +67,9 @@ const Signup = ({ toggleIsLogin, setUser }: AuthModel) => {
 
         <form
             onSubmit={handleSubmit((data) => {
-                console.log(data)
 
                 if (!errors.email?.message && !errors.password?.message && !errors.username?.message)
                     handleRegisterSubmit(data)
-
             })}
         >
 

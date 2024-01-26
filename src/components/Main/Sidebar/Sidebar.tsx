@@ -6,6 +6,7 @@ import Sidebar_Chat from './Components/Sidebar_Chat'
 import Sidebar_Poll from './Components/Sidebar_Poll'
 import Sidebar_PastEvents from './Components/Sidebar_PastEvents'
 import Sidebar_Profile from './Components/Sidebar_profile'
+import Sidebar_Groups from './Components/Sidebar_Groups'
 
 const Sidebar = () => {
 
@@ -44,6 +45,7 @@ const Sidebar = () => {
 
                 {/* SETTINGS AREA */}
                 <div className='pb-20'>
+                    <Sidebar_Groups></Sidebar_Groups>
                     <Sidebar_Profile></Sidebar_Profile>
                 </div>
 
