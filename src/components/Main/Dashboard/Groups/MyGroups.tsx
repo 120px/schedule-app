@@ -29,27 +29,26 @@ const MyGroups = () => {
         if (userDataSnap.exists()) {
             // Access a specific field, for example, 'username'
             const groups = userDataSnap.data().groups;
-            const groupData = getGroupData(groups)
-
-            // setUserGroups(groupData: any)
+            if (groups)
+                getGroupData(groups)
         } else {
             // Handle the case where the document doesn't exist
             console.log("No such document!");
         }
     }
 
-    const getGroupData = async (groups : Array<string>) => {
+    const getGroupData = async (groups: Array<string>) => {
         let arr: any = []
-        let data 
+        let data
         let data2
-        for (let i = 0; i < groups.length; i++){
+        for (let i = 0; i < groups.length; i++) {
             data = doc(db, "groups", groups[i])
             data2 = (await getDoc(data)).data()
-            console.log(data2)
             arr.push(data2)
         }
-        
+
         console.log(arr)
+        setUserGroups(arr)
     }
 
     // Tiles:
@@ -57,11 +56,13 @@ const MyGroups = () => {
     // show the description
 
     return (
-        <div className='mx-auto grid grid-cols-3 gap-6 h-max mt-12 w-3/4'>
+        <div className='mx-auto grid grid-cols-3 gap-6 h-max mt-12 w-4/5'>
             {userGroups !== undefined && userGroups.length > 0 ?
-                <div> {userGroups!.map(group => group!.data.name)}</div>
+                <>{userGroups!.map(group =>
+                    <GroupTile group={group}></GroupTile>)}
+                </>
 
-            : null}
+                : <div> You have not joined any groups yet. Try making one! </div>}
 
         </div>
     )

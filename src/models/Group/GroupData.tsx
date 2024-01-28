@@ -1,5 +1,6 @@
 export default interface GroupData{
-    data: {
+    groupData: {
+        id: string,
         name: string,
         description: string,
         members: [string],

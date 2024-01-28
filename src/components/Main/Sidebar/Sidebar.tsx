@@ -5,7 +5,7 @@ import Sidebar_Calendar from './Components/Sidebar_Calendar'
 import Sidebar_Chat from './Components/Sidebar_Chat'
 import Sidebar_Poll from './Components/Sidebar_Poll'
 import Sidebar_PastEvents from './Components/Sidebar_PastEvents'
-import Sidebar_Profile from './Components/Sidebar_profile'
+// import Sidebar_Profile from './Components/Sidebar_profile'
 import Sidebar_Groups from './Components/Sidebar_Groups'
 
 const Sidebar = () => {
@@ -44,9 +44,9 @@ const Sidebar = () => {
                 </div>
 
                 {/* SETTINGS AREA */}
-                <div className='pb-20'>
+                <div className=''>
                     <Sidebar_Groups></Sidebar_Groups>
-                    <Sidebar_Profile></Sidebar_Profile>
+                    {/* <Sidebar_Profile></Sidebar_Profile> */}
                 </div>
 
             </div>
