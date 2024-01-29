@@ -3,11 +3,8 @@ import './index.css';
 import { auth, db } from './firebase-config';
 import Authentication from './components/Authentication/Authentication';
 import Main from './components/Main/Main';
-import Sidebar from './components/Main/Sidebar/Sidebar';
-import UserModel from './models/auth/UserModel';
-import { User, onAuthStateChanged } from 'firebase/auth';
+import { User } from 'firebase/auth';
 import { doc, getDoc } from 'firebase/firestore';
-import { Outlet } from 'react-router-dom';
 
 function App() {
 

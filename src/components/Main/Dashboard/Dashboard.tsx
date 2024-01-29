@@ -4,9 +4,12 @@ import QuickLinks from './QuickLinks/QuickLinks'
 import { auth, db } from '../../../firebase-config';
 import { getDocs, collection, getDoc, doc } from 'firebase/firestore';
 import Right_Sidebar from './RightSidebar/Right_Sidebar';
+import Create from './Create/Create';
+import Dashboard_Header from './Dashboard_Header';
 
 //https://dribbble.com/shots/19419939-Admin-dashboard-analytics-UX
 // https://dribbble.com/shots/20203136-Citrix-Admin-Dashboard-Analytics-UX-UI
+//https://dribbble.com/shots/17103862-Pansos-Social-Media-Dashboard-App
 const Dashboard = () => {
     // Right side: 
     // Upcoming events
@@ -21,12 +24,13 @@ const Dashboard = () => {
 
     const [userGroups, setUserGroups] = useState<any>()
     const userGroupCollectionRef = doc(db, "user", auth.currentUser!.uid)
-    
+
     return (
-        <div className='flex flex-row w-full'>
+        <div className='flex flex-col mx-auto w-4/5'>
+            <Dashboard_Header/>
             <MyEvents></MyEvents>
-            <Right_Sidebar></Right_Sidebar>
-            
+            {/* <Right_Sidebar></Right_Sidebar> */}
+
         </div>
     )
 }

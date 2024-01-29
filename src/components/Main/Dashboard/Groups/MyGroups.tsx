@@ -44,6 +44,7 @@ const MyGroups = () => {
         for (let i = 0; i < groups.length; i++) {
             data = doc(db, "groups", groups[i])
             data2 = (await getDoc(data)).data()
+            data2!.groupData.id = groups[i]
             arr.push(data2)
         }
 
@@ -59,7 +60,7 @@ const MyGroups = () => {
         <div className='mx-auto grid grid-cols-3 gap-6 h-max mt-12 w-4/5'>
             {userGroups !== undefined && userGroups.length > 0 ?
                 <>{userGroups!.map(group =>
-                    <GroupTile group={group}></GroupTile>)}
+                    <GroupTile key={group.groupData.id} group={group}></GroupTile>)}
                 </>
 
                 : <div> You have not joined any groups yet. Try making one! </div>}
