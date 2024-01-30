@@ -7,6 +7,7 @@ import Sidebar_Poll from './Components/Sidebar_Poll'
 import Sidebar_PastEvents from './Components/Sidebar_PastEvents'
 import Sidebar_Groups from './Components/Sidebar_Groups'
 import Sidebar_Profile from './Components/Sidebar_Profile'
+import Sidebar_Members from './Components/Sidebar_Members'
 
 const Sidebar = () => {
 
@@ -29,24 +30,25 @@ const Sidebar = () => {
                             </div>
                         </div>
                         <div>
-                            <CloseSidebarBtn></CloseSidebarBtn>
+                            <CloseSidebarBtn/>
                         </div>
                     </div>
 
                     {/* CONTENT / BUTTON / ICON AREA */}
                     <div className='flex flex-col gap-3'>
-                        <DashboardRedirect></DashboardRedirect>
-                        <Sidebar_Chat></Sidebar_Chat>
-                        <Sidebar_Calendar></Sidebar_Calendar>
-                        <Sidebar_Poll></Sidebar_Poll>
-                        <Sidebar_PastEvents></Sidebar_PastEvents>
+                        <DashboardRedirect/>
+                        <Sidebar_Chat/>
+                        <Sidebar_Calendar/>
+                        <Sidebar_Poll/>
+                        <Sidebar_PastEvents/>
+                        <Sidebar_Members/>
                     </div>
                 </div>
 
                 {/* SETTINGS AREA */}
                 <div className=''>
-                    <Sidebar_Groups></Sidebar_Groups>
-                    <Sidebar_Profile></Sidebar_Profile>
+                    <Sidebar_Groups/>
+                    <Sidebar_Profile/>
                 </div>
 
             </div>
