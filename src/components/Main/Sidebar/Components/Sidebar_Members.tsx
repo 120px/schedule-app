@@ -12,7 +12,7 @@ const Sidebar_Members = () => {
             <div className=''>
                 <FontAwesomeIcon icon={faUsers} />
             </div>
-            <div className='pl-1'>My Groups</div>
+            <div className='pl-1'>Members</div>
         </Link>
     )
 }

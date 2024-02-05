@@ -1,7 +1,9 @@
+import { group } from 'console'
 import { auth, db } from '../../../../firebase-config'
 import CreateGroupInfo from '../../../../models/Group/CreateGroupInfo'
 import { addDoc, collection } from 'firebase/firestore'
 import { useForm } from 'react-hook-form'
+import { v4 as uuidv4 } from "uuid"
 
 const CreateGroup = () => {
 
@@ -26,9 +28,11 @@ const CreateGroup = () => {
   }
 
   const prepSubmitData = async (groupData: CreateGroupInfo) => {
-    groupData.creatorId = auth.currentUser!.uid
-    groupData.dateCreated = new Date().toLocaleDateString()
-    groupData.members  = [`${groupData.creatorId  }`]
+    groupData.creatorId = auth.currentUser!.uid;
+    groupData.dateCreated = new Date().toLocaleDateString();
+    groupData.members  = [`${groupData.creatorId}`];
+    groupData.inviteURL = uuidv4();
+    
   }
 
   return (

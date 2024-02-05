@@ -9,7 +9,7 @@ import { User } from '../../../../models/User/User'
 const GroupMembers = () => {
 
     const { groupId } = useParams()
-    const [groupInfo, setGroupInfo] = useState<GroupData | undefined>()
+    const [groupInfo, setGroupInfo] = useState<any | undefined>()
     const [groupmembers, setGroupMembers] = useState<Array<User>>()
 
     useEffect(() => {
@@ -23,9 +23,9 @@ const GroupMembers = () => {
     const getGroupMembers = async () => {
         if (groupId) {
             const groupMembersData = doc(db, "groups", groupId)
-            const data = (await getDoc(groupMembersData)).data()!.groupData;
-            setGroupInfo(data!.members)
-            getGroupMembersInfo(data!.members)
+            const data = (await getDoc(groupMembersData)).data();
+            await setGroupInfo(data)
+            await getGroupMembersInfo(data!.groupData.members)
         }
         else
             console.log("nothing here")
@@ -51,10 +51,16 @@ const GroupMembers = () => {
         <div className="ml-auto w-3/4">
 
             <div className="p-4 max-w-md bg-white rounded-lg border shadow-md sm:p-8 dark:bg-gray-800 dark:border-gray-700">
-                <div className="flex justify-between items-center mb-4 flex-col">
-                    <span className="text-xl font-bold leading-none text-gray-900 dark:text-white">Group Name's</span>
-                    <span className="text-lg font-bold leading-none text-gray-900 dark:text-white">Members</span>
+                <div className='flex flex-row justify-between'>
+                    <div className="flex justify-between items-center mb-4 flex-col">
+                        <span className="text-2xl font-bold leading-none text-gray-900 dark:text-white">{groupInfo?.groupData.name !== undefined ? groupInfo?.groupData.name : "Group name's"}</span>
+                        <span className="text-lg font-bold leading-none text-gray-900 dark:text-white">Members</span>
+                    </div>
+                    <div>
+                        <button type="button" className="inline-block rounded bg-orange-500 text-neutral-50 shadow-[0_4px_9px_-4px_rgba(51,45,45,0.7)] hover:bg-orange-600 hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] focus:bg-orange-800 focus:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] active:bg-orange-700 active:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal transition duration-150 ease-in-out focus:outline-none focus:ring-0">Invite Member</button>
+                    </div>
                 </div>
+
 
                 <div className="flow-root">
                     <ul role="list" className="divide-y divide-gray-200 dark:divide-gray-700">
