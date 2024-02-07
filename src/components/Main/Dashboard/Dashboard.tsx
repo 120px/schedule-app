@@ -24,6 +24,7 @@ const Dashboard = () => {
 
     const [userGroups, setUserGroups] = useState<any>()
     const userGroupCollectionRef = doc(db, "user", auth.currentUser!.uid)
+    
 
     return (
         <div className='flex flex-col mx-auto w-4/5'>

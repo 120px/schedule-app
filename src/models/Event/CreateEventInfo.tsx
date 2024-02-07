@@ -5,6 +5,7 @@ export default interface CreateEventInfo{
     address: string,
     dateCreated: string,
     dateFor: string,
+    time: Date,
     description: string,
     location: string,
     members: [string],

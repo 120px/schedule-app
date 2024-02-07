@@ -62,8 +62,9 @@ const MyGroups = () => {
     return (
         <>
             <div className='mx-auto flex'>
+
                 <Link to={"/creategroup"}>Create a Group</Link>
-                <Link to={"/creategroup"}>Create a Group</Link>
+                <Link to={"/dashboard"}>Create a Group</Link>
 
             </div>
             <div className='mx-auto grid grid-cols-3 gap-6 h-max mt-12 w-4/5'>

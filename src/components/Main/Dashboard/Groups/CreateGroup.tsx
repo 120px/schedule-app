@@ -16,7 +16,7 @@ const CreateGroup = () => {
       return
     }
 
-    await prepSubmitData(groupData)
+    prepSubmitData(groupData)
 
     await addDoc(collection(db, "groups"), {
       groupData
@@ -27,7 +27,7 @@ const CreateGroup = () => {
     //Reroute to home of group
   }
 
-  const prepSubmitData = async (groupData: CreateGroupInfo) => {
+  const prepSubmitData = (groupData: CreateGroupInfo) => {
     groupData.creatorId = auth.currentUser!.uid;
     groupData.dateCreated = new Date().toLocaleDateString();
     groupData.members  = [`${groupData.creatorId}`];

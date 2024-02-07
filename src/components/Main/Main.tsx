@@ -11,13 +11,10 @@ interface MainProps {
 
 const Main = (props: MainProps) => {
 
-    const { groupId } = useParams()
-
     return (
         <>
             <Sidebar></Sidebar>
             <div className='flex flex-row w-full'>
-                {/* {groupId ? groupId : null} */}
                 <Outlet></Outlet>
             </div>
         </>

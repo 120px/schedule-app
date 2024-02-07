@@ -7,7 +7,6 @@ interface UserInput {
     [username: string]: any
 }
 
-console.log(auth.currentUser)
 
 const Login = ({ toggleIsLogin, setUser }: authProps) => {
 
