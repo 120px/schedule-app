@@ -1,7 +1,7 @@
 import { group } from 'console'
 import { auth, db } from '../../../../firebase-config'
 import CreateGroupInfo from '../../../../models/Group/CreateGroupInfo'
-import { addDoc, collection } from 'firebase/firestore'
+import { addDoc, arrayUnion, collection, doc, setDoc, updateDoc } from 'firebase/firestore'
 import { useForm } from 'react-hook-form'
 import { v4 as uuidv4 } from "uuid"
 
@@ -20,7 +20,11 @@ const CreateGroup = () => {
 
     await addDoc(collection(db, "groups"), {
       groupData
-    })
+    }).then((docRef) => {
+      updateDoc(doc(db, "users", auth.currentUser!.uid,), {
+        groups: arrayUnion(docRef.id)
+      })
+  })
 
     console.log(groupData)
 

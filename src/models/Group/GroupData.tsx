@@ -4,5 +4,6 @@ export default interface GroupData{
         name: string,
         description: string,
         members: [string],
+        inviteURL : string
     }
 }

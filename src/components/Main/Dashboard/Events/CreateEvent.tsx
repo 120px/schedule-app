@@ -60,6 +60,10 @@ const CreateEvent = () => {
 
     }
 
+    const toggleModal = () =>{
+        
+    }
+
     return (
         <div className=''>
             <div className='absolute top-0 right-0 bottom-0 left-0 m-auto shadow-xl max-w-xl bg-white h-fit mx-auto p-20 '>

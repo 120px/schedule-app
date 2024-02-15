@@ -5,12 +5,17 @@ import { doc, getDoc } from 'firebase/firestore'
 import { db } from '../../../../firebase-config'
 import GroupData from '../../../../models/Group/GroupData'
 import { User } from '../../../../models/User/User'
+import InviteGroupMember from './InviteGroupMember'
 
 const GroupMembers = () => {
 
     const { groupId } = useParams()
-    const [groupInfo, setGroupInfo] = useState<any | undefined>()
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [groupInfo, setGroupInfo] = useState<GroupData>()
     const [groupmembers, setGroupMembers] = useState<Array<User>>()
+
+    const openModal = () => setIsModalOpen(true);
+    const closeModal = () => setIsModalOpen(false);
 
     useEffect(() => {
         getGroupMembers()
@@ -46,9 +51,9 @@ const GroupMembers = () => {
         setGroupMembers(arr)
     }
 
-
     return (
         <div className="ml-auto w-3/4">
+            <InviteGroupMember groupInfo={groupInfo} isOpen={isModalOpen} onClose={closeModal}></InviteGroupMember>
 
             <div className="p-4 max-w-md bg-white rounded-lg border shadow-md sm:p-8 dark:bg-gray-800 dark:border-gray-700">
                 <div className='flex flex-row justify-between'>
@@ -57,15 +62,16 @@ const GroupMembers = () => {
                         <span className="text-lg font-bold leading-none text-gray-900 dark:text-white">Members</span>
                     </div>
                     <div>
-                        <button type="button" className="inline-block rounded bg-orange-500 text-neutral-50 shadow-[0_4px_9px_-4px_rgba(51,45,45,0.7)] hover:bg-orange-600 hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] focus:bg-orange-800 focus:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] active:bg-orange-700 active:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal transition duration-150 ease-in-out focus:outline-none focus:ring-0">Invite Member</button>
+                        <button onClick={openModal} type="button" className="inline-block rounded bg-orange-500 text-neutral-50 shadow-[0_4px_9px_-4px_rgba(51,45,45,0.7)] hover:bg-orange-600 hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] focus:bg-orange-800 focus:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] active:bg-orange-700 active:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal transition duration-150 ease-in-out focus:outline-none focus:ring-0">Invite Member</button>
+                        
                     </div>
                 </div>
 
 
                 <div className="flow-root">
                     <ul role="list" className="divide-y divide-gray-200 dark:divide-gray-700">
-                        {groupmembers !== undefined ? groupmembers!.map((member) =>
-                            <GroupMemberDetails member={member} />
+                        {groupmembers !== undefined ? groupmembers!.map((member, index) =>
+                            <GroupMemberDetails key={index} member={member} />
                         ) : "No data"}
 
                         <li className="pt-3 pb-0 sm:pt-4">
