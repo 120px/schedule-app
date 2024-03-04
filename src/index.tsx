@@ -9,6 +9,7 @@ import CreateGroup from './components/Main/Dashboard/Groups/CreateGroup';
 import MyGroups from './components/Main/Dashboard/Groups/MyGroups';
 import GroupMembers from './components/Main/Dashboard/GroupMembers/GroupMembers';
 import CreateEvent from './components/Main/Dashboard/Events/CreateEvent';
+import Profile from './components/Main/Dashboard/Profile/Profile';
 
 const router = createBrowserRouter([
   {
@@ -39,6 +40,11 @@ const router = createBrowserRouter([
       {
         path: "/group/:groupId/groupmembers",
         element: <GroupMembers />,
+      }
+      ,
+      {
+        path: "/myprofile",
+        element: <Profile />,
       }
     ]
   },

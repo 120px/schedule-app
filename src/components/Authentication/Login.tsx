@@ -26,7 +26,6 @@ const Login = ({ toggleIsLogin, setUser }: authProps) => {
             console.log(loginUser)
             setUser(loginUser)
 
-
         } catch (error) {
             console.log("ERROR IN LOGIN: " + error)
         }
@@ -36,14 +35,14 @@ const Login = ({ toggleIsLogin, setUser }: authProps) => {
     return (
         <form onSubmit={handleRegisterSubmit}>
             <div className='mb-8 text-center'>
-                <h3 className='text-3xl font-semibold mb-4'>Welcome back!</h3>
-                <span className='text-slate-500'>Please enter your login details</span>
+                <h3 className='text-3xl font-semibold mb-4'>Grouphere</h3>
+                <span className='text-slate-500'>Together in Every Moment.</span>
             </div>
             <div className='mb-6'>
                 <div className='mb-6'>
                     <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
                     <input onChange={handleUserInput} name="email" type="text" id="first_name" className="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 
-                        dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter your username" />
+                        dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="" />
                 </div>
                 <div>
                     <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
@@ -53,13 +52,13 @@ const Login = ({ toggleIsLogin, setUser }: authProps) => {
 
             </div>
             <div className='mb-6'>
-                <div className='flex flex-row justify-between mb-6'>
+                <div className='flex flex-col justify-between mb-6 text-center'>
                     <div>
                         <input type="checkbox"></input>
                         <label className='pl-2 font-normal'>Remember for 30 days</label>
                     </div>
                     <div>
-                        <span className='font-medium text-orange-500'>Forgot password</span>
+                        <p className='font-medium text-orange-500'>Forgot password</p>
                     </div>
                 </div>
             </div>

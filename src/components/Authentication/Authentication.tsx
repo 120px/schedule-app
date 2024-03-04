@@ -16,13 +16,14 @@ const Authentication = ({ setUser }: any) => {
 
     return (
 
-        <div className='shadow-xl max-w-xl bg-white h-fit mx-auto p-20 mt-12'>
+        <div className='max-md:w-full max-md:px-8 max-md:shadow-none
+        md:w-2/3 
+        shadow-xl max-w-1/3 w-1/3 bg-white h-full mx-auto px-32 py-8 mt-12'>
             {isLogin === true ?
                 <Login toggleIsLogin={toggleIsLogin} setUser={setUser}></Login>
                 :
                 <Signup toggleIsLogin={toggleIsLogin} setUser={setUser}></Signup>
             }
-
 
         </div>
     )
