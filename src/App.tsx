@@ -21,11 +21,6 @@ function App() {
     const userGroupCollectionRef = doc(db, "user", user!.uid)
     const data = await getDoc(userGroupCollectionRef)
 
-
-    if (data)
-      setUserGroups(data.data())
-    else
-      console.log("no groups rn")
   }
 
   useEffect(() => {
@@ -43,9 +38,9 @@ function App() {
   }, [])
 
   return (
-    <div className='flex'>
+    <>
       {user ? <Main user={user} /> : <Authentication />}
-    </div>
+    </>
   );
 }
 

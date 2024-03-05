@@ -1,9 +1,7 @@
-import React, { useState } from 'react'
 import CreateEventInfo from '../../../../models/Event/CreateEventInfo'
-import { addDoc, collection, doc, setDoc } from "firebase/firestore";
+import { addDoc, arrayUnion, collection, doc, setDoc, updateDoc } from "firebase/firestore";
 import { db } from '../../../../firebase-config';
 import { auth } from "../../../../firebase-config"
-import { getDatabase, ref, set } from "firebase/database";
 import { useForm } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
 
@@ -40,8 +38,10 @@ const CreateEvent = () => {
         try {
             await addDoc(collection(db, "events"), {
                 data
-            }).then((doc) => {
-                console.log(doc)
+            }).then((docRef) => {
+                updateDoc(doc(db, "groups", groupId!), {
+                    events: arrayUnion(docRef.id)
+                })
             })
 
         } catch (error) {
@@ -60,8 +60,8 @@ const CreateEvent = () => {
 
     }
 
-    const toggleModal = () =>{
-        
+    const toggleModal = () => {
+
     }
 
     return (

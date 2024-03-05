@@ -1,4 +1,3 @@
-import { group } from 'console'
 import { auth, db } from '../../../../firebase-config'
 import CreateGroupInfo from '../../../../models/Group/CreateGroupInfo'
 import { addDoc, arrayUnion, collection, doc, setDoc, updateDoc } from 'firebase/firestore'

@@ -33,10 +33,10 @@ const Login = ({ toggleIsLogin, setUser }: authProps) => {
     }
 
     return (
-        <form onSubmit={handleRegisterSubmit}>
-            <div className='mb-8 text-center'>
+        <form className='' onSubmit={handleRegisterSubmit}>
+            <div className='mb-8 text-center '>
                 <h3 className='text-3xl font-semibold mb-4'>Grouphere</h3>
-                <span className='text-slate-500'>Together in Every Moment.</span>
+                <span className='text-slate-500'>Group events, simplified.</span>
             </div>
             <div className='mb-6'>
                 <div className='mb-6'>
@@ -57,7 +57,7 @@ const Login = ({ toggleIsLogin, setUser }: authProps) => {
                         <input type="checkbox"></input>
                         <label className='pl-2 font-normal'>Remember for 30 days</label>
                     </div>
-                    <div>
+                    <div className='mt-4 mb-4'>
                         <p className='font-medium text-orange-500'>Forgot password</p>
                     </div>
                 </div>

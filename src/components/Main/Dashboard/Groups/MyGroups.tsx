@@ -32,7 +32,6 @@ const MyGroups = () => {
         if (userDataSnap.exists()) {
             // Access a specific field, for example, 'username'
             const groups = userDataSnap.data().groups;
-            console.log(groups)
             if (groups)
                 getGroupData(groups)
         } else {
@@ -52,6 +51,7 @@ const MyGroups = () => {
             console.log("Data:" + data2)
             arr.push(data2)
         }
+        
         setUserGroups(arr)
     }
 

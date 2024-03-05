@@ -12,12 +12,12 @@ interface MainProps {
 const Main = (props: MainProps) => {
 
     return (
-        <>
+        <div className='flex'>
             <Sidebar></Sidebar>
             <div className='flex flex-row w-full'>
                 <Outlet></Outlet>
             </div>
-        </>
+        </div>
 
     )
 }
