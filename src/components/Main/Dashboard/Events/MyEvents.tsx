@@ -11,13 +11,21 @@ import EventInfo from '../../../../models/Event/EventInfo'
 //https://dribbble.com/shots/17227772-Add-new-course
 //https://dribbble.com/shots/18964945-Calendar-create-event
 
+interface GroupEvent {
+    data: EventInfo; // Using the EventInfo interface you provided earlier
+}
+
+interface DashboardEventProps {
+    groupEvent: GroupEvent;
+}
+
 const MyEvents = () => {
 
     const { groupId } = useParams()
 
     // check if the user has any upcoming events in the current group
     // we only want to see the closest events
-    const [groupEvents, setGroupEvents] = useState<GroupEvents>()
+    const [groupEvents, setGroupEvents] = useState<GroupEvent[]>([]);
 
     useEffect(() => {
         const fetchEvents = async () => {
@@ -47,29 +55,40 @@ const MyEvents = () => {
 
         if (groupDataSnap.exists())
             return await groupDataSnap.data().events
-
+        else
+            return []
     }
 
-    const getClosestEventsByData = async (events: [string]) => {
+    const getClosestEventsByData = async (events: string[]) => {
 
-        const eventPromises = events.map(async (id) => doc(db, "events", id))
+        const eventPromises = events.map(async (id) => getDoc(doc(db, "events", id)))
         const eventDocSnap = await Promise.all(eventPromises)
-        const eventsData = eventDocSnap.map(docSnap => docSnap.exists() ? docSnap.data() : null).filter(doc => doc !== null);
+        let eventArr: GroupEvent[] = []
 
-        console.log(eventDocSnap)
+        eventDocSnap.forEach((docSnap) => {
+            if (docSnap.exists()) {
+                const eventData = docSnap.data() as GroupEvent;
+                eventArr.push(eventData);
+            }
+        });
 
+        setGroupEvents(eventArr)
 
     }
 
     return (
         <div className='w-full'>
             <p className='text-xl font-bold text-center'>Upcoming Events</p>
-
-            {/* {groupEvents ? groupEvents.events.map((element: any) => {
-                <div>{element}</div>
-            }) : null} */}
-            <DashboardEvent></DashboardEvent>
-
+            <div className='flex flex-row'>
+                {groupEvents ? (
+                    groupEvents!.map((groupEvent, index) => (
+                        
+                        <DashboardEvent groupEvent={groupEvent} key={index} />
+                    ))
+                ) : (
+                    <p>No upcoming events found.</p>
+                )}
+            </div>
         </div>
     )
 }

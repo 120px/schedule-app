@@ -1,35 +1,28 @@
 import React from 'react'
+import EventInfo from '../../../../models/Event/EventInfo'
 
-const DashboardEvent = ({ }) => {
+type GroupEvent = {
+  data: EventInfo;
+}
+
+interface DashboardEventProps {
+  groupEvent: GroupEvent;
+}
+
+const DashboardEvent: React.FC<DashboardEventProps> = ({ groupEvent }) => {
+
   return (
-    <div>
-      <div className='flex flex-row place-content-center'>
-
-        <div className="w-1/6 p-12 bg-purple-300 mx-4">
-          <div className=''>
-            
-          </div>
-
-        </div>
-        
-        <div className="w-1/6 p-12 bg-purple-300 mx-4">
-          <div className=''>
-
-          </div>
-
-        </div>
-
-        <div className="w-1/6 p-12 bg-purple-300 mx-4">
-          <div className=''>
-
-          </div>
-
-        </div>
-
-
+    <>
+      <div className='flex flex-col'>
+        <p>{groupEvent.data.name}</p>
+        <p>{groupEvent.data.dateFor}</p>
+        <p>{groupEvent.data.members.length}</p>
+        <p>Location: {groupEvent.data.location}</p>
       </div>
+    </>
 
-    </div>
+    
+
   )
 }
 
