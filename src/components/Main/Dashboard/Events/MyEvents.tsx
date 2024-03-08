@@ -52,6 +52,7 @@ const MyEvents = () => {
 
         const groupData = doc(db, "groups", groupId!);
         const groupDataSnap = await getDoc(groupData);
+        
 
         if (groupDataSnap.exists())
             return await groupDataSnap.data().events
@@ -73,17 +74,19 @@ const MyEvents = () => {
         });
 
         setGroupEvents(eventArr)
+        await console.log(eventArr)
 
     }
 
     return (
         <div className='w-full'>
             <p className='text-xl font-bold text-center'>Upcoming Events</p>
-            <div className='flex flex-row'>
+            <div className='flex flex-row justify-around'>
                 {groupEvents ? (
-                    groupEvents!.map((groupEvent, index) => (
+                    groupEvents.slice(0,3)!.map((groupEvent, index) => (
                         
                         <DashboardEvent groupEvent={groupEvent} key={index} />
+                        
                     ))
                 ) : (
                     <p>No upcoming events found.</p>

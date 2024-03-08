@@ -20,7 +20,7 @@ const CreateEvent = () => {
 
     const { register, handleSubmit, formState: { errors } } = useForm<CreateEventInfo>({
         defaultValues: {
-            address: "", creatorId: auth.currentUser!.uid, dateCreated: new Date().toLocaleDateString(), dateFor: "",
+            address: "", creatorId: auth.currentUser!.uid, created_at: new Date(), date_for: new Date(),
             description: "", group: "", location: "", members: [""],
             name: "", reservation: false, urgent: false
         }
@@ -51,10 +51,12 @@ const CreateEvent = () => {
 
     const prepSubmitData = (data: CreateEventInfo) => {
         data.creatorId = auth.currentUser!.uid;
-        data.dateCreated = new Date().toLocaleDateString();
+        data.created_at = new Date();
         data.members = [`${data.creatorId}`];
+        data.date_for = new Date(data.date_for);
+        console.log(data.date_for)
         if (groupId !== undefined)
-            data.group = groupId
+            data.group = groupId;
         else
             return
 
@@ -81,7 +83,7 @@ const CreateEvent = () => {
                         <div className="relative max-w-sm">
 
                             <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Date</label>
-                            <input {...register("dateFor")} type="date" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 
+                            <input {...register("date_for")} type="date" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 
                     block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select date" />
                         </div>
 

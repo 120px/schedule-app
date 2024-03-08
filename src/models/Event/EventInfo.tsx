@@ -2,8 +2,10 @@ export default interface EventInfo {
     creatorId: string,
     group: string,
     address: string,
-    dateCreated: string,
-    dateFor: string,
+    date_for: {
+        nanoseconds: number,
+        seconds: number
+    },
     time: Date,
     description: string,
     location: string,
