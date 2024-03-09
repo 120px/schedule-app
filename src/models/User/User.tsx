@@ -1,4 +1,6 @@
 export interface User {
-    email: string,
-    username: string
+    data:{
+        username: string
+    }, 
+    groups: [string]
 }

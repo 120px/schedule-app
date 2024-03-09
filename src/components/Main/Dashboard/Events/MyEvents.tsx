@@ -39,7 +39,7 @@ const MyEvents = () => {
                 console.error("Error fetching events:", error);
             }
         };
-        fetchEvents();
+        // fetchEvents();
     }, [])
 
     const getGroupEventsIds = async () => {

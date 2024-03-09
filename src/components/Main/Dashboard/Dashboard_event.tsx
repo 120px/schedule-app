@@ -8,7 +8,7 @@ interface Dashboard_eventProps {
 const Dashboard_event: React.FC<Dashboard_eventProps> = ({ eventInfo }) => {
     return (
 
-        <div className='w-full flex flex-col bg-slate-200 p-6 border'>
+        <div className='w-full flex flex-col bg-slate-200 p-6 '>
             <div className='flex flex-row'>
                 <div className="w-8 h-8 bg-red-400 rounded-full"></div>
                 <p className='pl-4 font-bold text-lg'>Username Here</p>
