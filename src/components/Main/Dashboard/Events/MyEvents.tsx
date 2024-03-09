@@ -1,10 +1,9 @@
 import { useEffect, useState } from 'react'
 import { db } from '../../../../firebase-config'
-import DashboardEvent from '../../Dashboard/Events/DashboardEvent'
-import { doc, getDoc, collection } from 'firebase/firestore'
+import UpcomingEvent from './UpcomingEvent'
+import { doc, getDoc,  } from 'firebase/firestore'
 import { useParams } from 'react-router-dom'
 import GroupEvents from '../../../../models/Group/GroupEvents'
-import ClosestEventsInfo from '../../../../models/Event/ClosestEventsInfo'
 import EventInfo from '../../../../models/Event/EventInfo'
 
 //https://dribbble.com/shots/15627005-Contentstack-CMS-UI-Updates-Content-Models
@@ -83,9 +82,7 @@ const MyEvents = () => {
             <div className='flex flex-row justify-around'>
                 {groupEvents ? (
                     groupEvents.slice(0,3)!.map((groupEvent, index) => (
-                        
-                        <DashboardEvent groupEvent={groupEvent} key={index} />
-                        
+                        <UpcomingEvent groupEvent={groupEvent} key={index} />
                     ))
                 ) : (
                     <p>No upcoming events found.</p>

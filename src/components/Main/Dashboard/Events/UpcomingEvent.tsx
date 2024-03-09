@@ -2,7 +2,7 @@ import React from 'react'
 import EventInfo from '../../../../models/Event/EventInfo'
 import { group } from 'console';
 
-interface DashboardEventProps {
+interface UpcomingEventProps {
   groupEvent: EventInfo;
 }
 
@@ -10,7 +10,7 @@ interface timeStamp {
   nanoseconds: number; seconds: number;
 }
 
-const DashboardEvent: React.FC<DashboardEventProps> = ({ groupEvent }) => {
+const UpcomingEvent: React.FC<UpcomingEventProps> = ({ groupEvent }) => {
 
   // This gets called every time we call the function in the render
   // Try to find a better way
@@ -70,4 +70,4 @@ const DashboardEvent: React.FC<DashboardEventProps> = ({ groupEvent }) => {
   )
 }
 
-export default DashboardEvent
+export default UpcomingEvent

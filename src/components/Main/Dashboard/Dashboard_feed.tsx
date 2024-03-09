@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { db } from '../../../firebase-config';
-import { collection, doc, getDoc, getDocs, limit, orderBy, query } from 'firebase/firestore';
+import { collection, getDocs, limit, orderBy, query } from 'firebase/firestore';
 import { useParams } from 'react-router-dom';
 import EventInfo from '../../../models/Event/EventInfo';
+import Dashboard_event from './Dashboard_event';
 
 const Dashboard_feed = () => {
 
@@ -46,9 +47,9 @@ const Dashboard_feed = () => {
     }
 
     return (
-        <div>
-            {events ? events.map((doc, index) => (
-                <div key={index}>{doc.description}</div>
+        <div className='w-1/2 mx-auto'>
+            {events ? events.map((eventInfo, index) => (
+                <Dashboard_event key={index} eventInfo={eventInfo} ></Dashboard_event>
             )) : null}
         </div>
     )
