@@ -74,7 +74,6 @@ const MyEvents = () => {
         });
 
         setGroupEvents(eventArr)
-        await console.log(eventArr)
 
     }
 

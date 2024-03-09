@@ -27,7 +27,7 @@ const GroupMembers = () => {
 
     const getGroupMembers = async () => {
         if (groupId) {
-            const groupMembersData = doc(db, "groups", groupId)
+            const groupMembersData = await doc(db, "groups", groupId)
             const data = (await getDoc(groupMembersData)).data();
             await setGroupInfo(data)
             await getGroupMembersInfo(data!.groupData.members)
@@ -63,10 +63,8 @@ const GroupMembers = () => {
                     </div>
                     <div>
                         <button onClick={openModal} type="button" className="inline-block rounded bg-orange-500 text-neutral-50 shadow-[0_4px_9px_-4px_rgba(51,45,45,0.7)] hover:bg-orange-600 hover:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] focus:bg-orange-800 focus:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] active:bg-orange-700 active:shadow-[0_8px_9px_-4px_rgba(51,45,45,0.2),0_4px_18px_0_rgba(51,45,45,0.1)] px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal transition duration-150 ease-in-out focus:outline-none focus:ring-0">Invite Member</button>
-                        
                     </div>
                 </div>
-
 
                 <div className="flow-root">
                     <ul role="list" className="divide-y divide-gray-200 dark:divide-gray-700">

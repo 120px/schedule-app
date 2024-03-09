@@ -37,7 +37,7 @@ const CreateEvent = () => {
 
         try {
             await addDoc(collection(db, "events"), {
-                data
+                ...data
             }).then((docRef) => {
                 updateDoc(doc(db, "groups", groupId!), {
                     events: arrayUnion(docRef.id)
@@ -55,6 +55,7 @@ const CreateEvent = () => {
         data.members = [`${data.creatorId}`];
         data.date_for = new Date(data.date_for);
         console.log(data.date_for)
+
         if (groupId !== undefined)
             data.group = groupId;
         else

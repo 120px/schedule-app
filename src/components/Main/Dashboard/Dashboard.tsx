@@ -6,6 +6,7 @@ import { getDocs, collection, getDoc, doc } from 'firebase/firestore';
 import Right_Sidebar from './RightSidebar/Right_Sidebar';
 import Create from './Create/Create';
 import Dashboard_Header from './Dashboard_Header';
+import Dashboard_feed from './Dashboard_feed';
 
 //https://dribbble.com/shots/19419939-Admin-dashboard-analytics-UX
 //https://dribbble.com/shots/20203136-Citrix-Admin-Dashboard-Analytics-UX-UI
@@ -32,7 +33,8 @@ const Dashboard = () => {
         <div className='flex flex-col mx-auto w-4/5'>
             <Dashboard_Header/>
             <MyEvents></MyEvents>
-            {/* <Right_Sidebar></Right_Sidebar> */}
+            <Dashboard_feed></Dashboard_feed>
+
 
         </div>
     )
