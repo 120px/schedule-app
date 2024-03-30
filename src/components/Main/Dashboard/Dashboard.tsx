@@ -17,7 +17,7 @@ import { User } from '../../../models/User/User';
 //https://dribbble.com/shots/21864904-Feed-Layout-Social-Media-App
 const Dashboard = () => {
 
-    const [currentUser, setCurrentUser] = useState<User>()
+    const [currentUser, setCurrentUser] = useState<User | undefined>()
     // Right side: 
     // Upcoming events
 
@@ -41,7 +41,7 @@ const Dashboard = () => {
         const userData = await doc(db, "users", auth.currentUser!.uid)
         const userDataSnap = await getDoc(userData);
         setCurrentUser(userDataSnap.data() as User)
-        
+
     }
 
     return (

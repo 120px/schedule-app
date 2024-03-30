@@ -1,6 +1,5 @@
 export default interface EventInfo {
-    creatorId: string,
-    group: string,
+    // group: string,
     address: string,
     date_for: {
         nanoseconds: number,
@@ -12,5 +11,5 @@ export default interface EventInfo {
     members: [string],
     name: string,
     reservation: boolean,
-    urgent: boolean
+    // urgent: boolean
 }
