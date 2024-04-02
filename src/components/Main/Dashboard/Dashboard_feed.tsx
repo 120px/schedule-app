@@ -15,12 +15,13 @@ const Dashboard_feed: React.FC<Dashboard_feedProps> = ({ currentUser }) => {
 
     const { groupId } = useParams()
     const [eventIds, setEventIds] = useState<GroupEvents[]>([]);
+    const [events, setEvents] = useState<EventInfo[]>()
     const [posts, setPosts] = useState<any>();
 
     useEffect(() => {
         const fetchEventsAndPostsAsync = async () => {
             let eventIds = await fetchEventIds();
-            await getEventInformation(eventIds!)
+            await getEventInformation(eventIds as string[])
             // await fetchTopTenLatestPostsCreated();
         }
 
@@ -41,18 +42,21 @@ const Dashboard_feed: React.FC<Dashboard_feedProps> = ({ currentUser }) => {
                         currentUser.groups.map(async (group) => {
                             const groupDocRef = await doc(db, "groups", group);
                             const docSnap = await getDoc(groupDocRef);
-                            return await docSnap.exists() ? { ...docSnap.data()!.events } : null;
+                            if (docSnap.exists() && docSnap.data().events !== undefined) {
+                                const eventsObject = docSnap.data().events;
+                                const combinedEventsArray = Object.values(eventsObject).flat();
+                                return combinedEventsArray;
+                            } else {
+                                return null;
+                            }
                         })
                     );
-                    // Filter out any null values that may have resulted from missing documents
-                    const validEvents: GroupEvents[] = eventsData.filter((data): data is GroupEvents => data !== null);
-                    await setEventIds(validEvents as GroupEvents[]);
-                    return validEvents;
+                    const validEvents = eventsData.filter(data => data !== null).flat();
+                    return await validEvents;
                 } catch (error) {
                     console.error("Error getting group documents:", error);
                 }
             }
-
         } else {
             console.log("in the ELSE")
             const eventsDocRef = await doc(db, "groups", groupId)
@@ -72,46 +76,49 @@ const Dashboard_feed: React.FC<Dashboard_feedProps> = ({ currentUser }) => {
 
     }
 
-    const getEventInformation = async (eventIds: GroupEvents[]) => {
-        if (eventIds.length > 0) {
-            try {
-                const eventsData = await Promise.all(
-                    eventIds.map(async (event) => {
-                        const eventsDocRef = await doc(db, "events", event);
-                        const docSnap = await getDoc(eventsDocRef);
-                        return await docSnap.exists() ? { ...docSnap.data() } : null;
-                    })
-                );
-                // Filter out any null values that may have resulted from missing documents
-                const validEvents: GroupEvents[] = eventsData.filter((data): data is GroupEvents => data !== null);
-                await setEventIds(validEvents as GroupEvents[]);
-                return validEvents;
-            } catch (error) {
-                console.error("Error getting group documents:", error);
-            }
+    const getEventInformation = async (groupEventsArray : string[]) => {
+        if (groupEventsArray.length > 0){
+            const eventsData = await Promise.all(
+                groupEventsArray.map(async (event) => {
+                    const groupDocRef = await doc(db, "events", event);
+                    const docSnap = await getDoc(groupDocRef);
+                    if (docSnap.exists()) {
+                        const eventsObject = docSnap.data();
+                        return eventsObject
 
+                    } else {
+                        return null;
+                    }
+                
+                })
+            );
+            const validEvents = eventsData.filter(data => data !== null)
+            setEvents(validEvents as EventInfo[])
+            return await validEvents;
         }
 
-        const fetchTopTenLatestPostsCreated = async () => {
-            const postsQuery = query(collection(db, 'posts'), orderBy('data.created_at'), limit(10));
-            const queryEventsSnapshot = await getDocs(postsQuery);
-
-            const posts = queryEventsSnapshot.docs.map(doc => ({
-                id: doc.id,
-                ...doc.data()
-            }));
-
-            setPosts(posts)
-        }
-
-        return (
-            <div className='w-1/2 mx-auto'>
-                {/* {events ? events[0].address : null} */}
-                {/* {events ? events.map((eventInfo, index) => (
-                <Dashboard_event key={index} eventInfo={eventInfo} ></Dashboard_event>
-            )) : null} */}
-            </div>
-        )
     }
 
-    export default Dashboard_feed
+    const fetchTopTenLatestPostsCreated = async () => {
+        const postsQuery = query(collection(db, 'posts'), orderBy('data.created_at'), limit(10));
+        const queryEventsSnapshot = await getDocs(postsQuery);
+
+        const posts = queryEventsSnapshot.docs.map(doc => ({
+            id: doc.id,
+            ...doc.data()
+        }));
+
+        setPosts(posts)
+    }
+
+    return (
+        <div className='w-1/2 mx-auto'>
+            {/* {events ? events[0].address : null} */}
+            {events ? events.map((eventInfo, index) => (
+                <Dashboard_event key={index} eventInfo={eventInfo} ></Dashboard_event>
+            )) : null}
+        </div>
+    )
+}
+
+export default Dashboard_feed

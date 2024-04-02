@@ -1,3 +1,3 @@
-export default interface GroupEvents {
-    events:[string]
+export default interface GroupEvent {
+    events:string
 }
