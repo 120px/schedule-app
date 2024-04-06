@@ -8,6 +8,9 @@ interface Dashboard_eventProps {
 const Dashboard_event: React.FC<Dashboard_eventProps> = ({ eventInfo }) => {
     return (
 
+        // Need to keep track of which group this event is coming from
+        // should have a small footnote or something. a link that redirects to the group or post
+
         <div className='w-full flex flex-col bg-cardBackground p-6 shadow-md rounded-md'>
             <div className='flex flex-row'>
                 <div className="w-8 h-8 bg-red-400 rounded-full"></div>

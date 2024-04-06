@@ -58,13 +58,11 @@ const Dashboard_feed: React.FC<Dashboard_feedProps> = ({ currentUser }) => {
                 }
             }
         } else {
-            console.log("in the ELSE")
             const eventsDocRef = await doc(db, "groups", groupId)
             await getDoc(eventsDocRef)
                 .then((docSnap) => {
                     if (docSnap.exists()) {
                         setEventIds(docSnap.data().events);
-                        console.log("EVENTS: " + eventIds)
                     } else {
                         console.log("no documents");
                     }

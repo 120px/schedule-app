@@ -12,7 +12,7 @@ const Dashboard_Header = () => {
 
     return (
         <div className='flex justify-between w-full py-8'>
-            <span className='text-2xl'>Dashboard</span>
+            <span className='text-xl font-bold'>Dashboard</span>
 
             <GroupSearchBar />
 

@@ -16,6 +16,7 @@ const CreateGroup = () => {
     }
 
     prepSubmitData(groupData)
+    console.log("group data: " + groupData.name)
 
     await addDoc(collection(db, "groups"), {
       groupData
@@ -35,6 +36,7 @@ const CreateGroup = () => {
     groupData.dateCreated = new Date().toLocaleDateString();
     groupData.members  = [`${groupData.creatorId}`];
     groupData.inviteURL = uuidv4();
+    groupData.name = groupData.name
     
   }
 
