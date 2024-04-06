@@ -47,7 +47,6 @@ const Dashboard = () => {
     return (
         <div className='flex flex-col mx-auto w-4/5'>
             <Dashboard_Header />
-            <MyEvents></MyEvents>
             <Dashboard_feed currentUser={currentUser}></Dashboard_feed>
 
         </div>

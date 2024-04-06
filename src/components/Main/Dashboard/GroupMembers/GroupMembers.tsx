@@ -52,7 +52,7 @@ const GroupMembers = () => {
     }
 
     return (
-        <div className="ml-auto w-3/4">
+        <div className="mx-auto w-3/4">
             <InviteGroupMember groupInfo={groupInfo} isOpen={isModalOpen} onClose={closeModal}></InviteGroupMember>
 
             <div className="p-4 max-w-md bg-white rounded-lg border shadow-md sm:p-8 dark:bg-gray-800 dark:border-gray-700">

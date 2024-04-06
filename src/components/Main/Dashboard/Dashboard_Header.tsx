@@ -6,19 +6,20 @@ const Dashboard_Header = () => {
 
     const { groupId } = useParams()
 
-    useEffect(() =>{
-        
+    useEffect(() => {
+
     })
 
     return (
         <div className='flex justify-between w-full py-8'>
             <span className='text-2xl'>Dashboard</span>
 
-            <GroupSearchBar/>
+            <GroupSearchBar />
 
             <div className='flex'>
-                <span>Create a Post</span>
-                <Link to={`/group/${groupId}/createevent`}>Create an Event</Link>
+                {/* <span>Create a Post</span> */}
+
+                <Link className='w-full rounded-lg py-3 px-5 bg-createButton text-white' to={`/group/${groupId}/createevent`}>Create</Link>
             </div>
         </div>
     )

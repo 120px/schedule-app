@@ -8,7 +8,7 @@ const Sidebar_Members = () => {
     const { groupId } = useParams()
 
     return (
-        <Link to={`/group/${groupId}/groupmembers`} className='flex flex-row hover:bg-orange-300 rounded-md px-1 py-1 hover:drop-shadow-md'>
+        <Link to={`/group/${groupId}/groupmembers`} className='flex flex-row rounded-md px-1 py-1 hover:drop-shadow-md hover:bg-sidebarHover'>
             <div className=''>
                 <FontAwesomeIcon icon={faUsers} />
             </div>

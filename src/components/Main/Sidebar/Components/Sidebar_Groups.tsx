@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 
 const Sidebar_Groups = () => {
     return (
-        <Link to={"/mygroups"} className='flex flex-row hover:bg-orange-300 rounded-md px-1 py-1 hover:drop-shadow-md'>
+        <Link to={"/mygroups"} className='flex flex-row hover:bg-sidebarHover px-1 py-1 rounded-md hover:drop-shadow-md'>
             <div className=''>
                 <FontAwesomeIcon icon={faUsersRectangle} />
             </div>

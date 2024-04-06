@@ -3,7 +3,7 @@ import { addDoc, arrayUnion, collection, doc, setDoc, updateDoc } from "firebase
 import { db } from '../../../../firebase-config';
 import { auth } from "../../../../firebase-config"
 import { useForm } from 'react-hook-form';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 
 interface Props {
@@ -125,17 +125,15 @@ const CreateEvent = () => {
 
                     <div className='flex justify-between mt-10'>
 
-                        <div className='w-4/12 mx-auto'>
-                            <button className='bg-white-full rounded-md text-gray-500 py-3'>Cancel</button>
+                        <div className='w-4/12'>
+                            <Link to={"/"} className='bg-red-100 w-full rounded-lg text-white hover:bg-sidebarHover'>Cancel</Link>
                         </div>
                         <div className='w-4/12'>
-                            <button type='submit' className='bg-orange-400 w-full rounded-lg text-white py-3 hover:bg-orange-600'>Create</button>
+                            <Link type='submit' to={"/"} className='text-center bg-createButton w-full rounded-lg text-white py-3 hover:bg-sidebarHover'>Create</Link>
                         </div>
 
                     </div>
-
                 </form>
-
             </div>
         </div>
 
