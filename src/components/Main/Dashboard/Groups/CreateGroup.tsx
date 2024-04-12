@@ -9,14 +9,15 @@ const CreateGroup = () => {
   const { register, handleSubmit } = useForm<CreateGroupInfo>();
   const onSubmit = (groupData: CreateGroupInfo) => handleFormSubmit(groupData);
 
+  // https://dribbble.com/shots/16525609-Group-Creation-Website
+
   const handleFormSubmit = async (groupData: CreateGroupInfo) => {
 
     if (!auth.currentUser!.uid) {
       return
     }
 
-    prepSubmitData(groupData)
-    console.log("group data: " + groupData.name)
+    prepSubmitData(groupData);
 
     await addDoc(collection(db, "groups"), {
       groupData
@@ -27,7 +28,6 @@ const CreateGroup = () => {
   })
 
     console.log(groupData)
-
     //Reroute to home of group
   }
 
@@ -36,7 +36,7 @@ const CreateGroup = () => {
     groupData.dateCreated = new Date().toLocaleDateString();
     groupData.members  = [`${groupData.creatorId}`];
     groupData.inviteURL = uuidv4();
-    groupData.name = groupData.name
+    groupData.groupName = groupData.groupName
     
   }
 

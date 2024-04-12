@@ -44,7 +44,9 @@ const Dashboard_feed: React.FC<Dashboard_feedProps> = ({ currentUser }) => {
                             const docSnap = await getDoc(groupDocRef);
                             if (docSnap.exists() && docSnap.data().events !== undefined) {
                                 const eventsObject = docSnap.data().events;
+                                console.log(docSnap.data())
                                 const combinedEventsArray = Object.values(eventsObject).flat();
+                                console.log(combinedEventsArray)
                                 return combinedEventsArray;
                             } else {
                                 return null;
@@ -110,7 +112,7 @@ const Dashboard_feed: React.FC<Dashboard_feedProps> = ({ currentUser }) => {
     }
 
     return (
-        <div className='w-1/2 mx-auto'>
+        <div className='w-3/4 mx-auto'>
             {/* {events ? events[0].address : null} */}
             {events ? events.map((eventInfo, index) => (
                 <Dashboard_event key={index} eventInfo={eventInfo} ></Dashboard_event>

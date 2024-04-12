@@ -20,6 +20,7 @@ const Dashboard_event: React.FC<Dashboard_eventProps> = ({ eventInfo }) => {
                 <p>{eventInfo.name}Event Name</p>
                 <p>{eventInfo.time}</p>
                 <p>{eventInfo.address}</p>
+                <p></p>
             </div>
             <div className='mt-3 text-md'>
                 <p>{eventInfo.description}</p>

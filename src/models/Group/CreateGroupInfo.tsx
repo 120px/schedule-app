@@ -1,7 +1,7 @@
 export default interface CreateGroupInfo{
 
     creatorId: string,
-    name: string,
+    groupName: string,
     dateCreated: string,
     description: string,
     password: string,
