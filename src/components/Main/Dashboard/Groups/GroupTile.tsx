@@ -1,11 +1,14 @@
 import React from 'react'
 import GroupData from '../../../../models/Group/GroupData'
+import { CurrentGroupProvider, useCurrentGroup } from "../../../../provider/CurrentGroupProvider"
 import { Link } from 'react-router-dom'
 
 interface GroupTileProps {
     group: GroupData
 
 }
+
+const { currentGroup, setCurrentGroup } = useCurrentGroup();
 
 const GroupTile: React.FC<GroupTileProps> = ({ group }: GroupTileProps) => {
     return (
@@ -22,7 +25,9 @@ const GroupTile: React.FC<GroupTileProps> = ({ group }: GroupTileProps) => {
 
             </div>
             <div className="p-3 pt-0 text-center flex">
-                <Link to={`/group/${group.groupData.id}/dashboard`} data-ripple-light="true" type="button" className="bg-createButton">
+                <Link to={`/group/${group.groupData.id}/dashboard`} data-ripple-light="true" type="button" className="bg-createButton" 
+                onClick={() => setCurrentGroup({id: '1', name: 'New Group'})}
+                >
                     info
                 </Link>
                 <Link to={`/group/${group.groupData.id}/dashboard`} data-ripple-light="true" type="button" className="select-none rounded-lg bg-blue-500 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-blue-500/20 transition-all hover:shadow-lg hover:shadow-blue-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none">
