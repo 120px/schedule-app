@@ -10,9 +10,7 @@ interface Dashboard_eventProps {
 
 const Dashboard_event: React.FC<Dashboard_eventProps> = ({ eventInfo, index }) => {
 
-    const count = () => {
-        console.log(index)
-    }
+    console.log(eventInfo);
 
     return (
 
@@ -23,7 +21,7 @@ const Dashboard_event: React.FC<Dashboard_eventProps> = ({ eventInfo, index }) =
             <div className='w-full flex flex-col bg-cardBackground p-6 shadow-md rounded-md'>
                 <div className='flex flex-row'>
                     <div className="w-8 h-8 bg-red-400 rounded-full"></div>
-                    <p className='pl-4 font-bold text-lg'>{"Event Creator"}</p>
+                    <p className='pl-4 font-bold text-lg'>{eventInfo.creatorName}</p>
                 </div>
                 <div className='text-center'>
                     <p>{eventInfo.name}Event Name</p>
@@ -35,9 +33,9 @@ const Dashboard_event: React.FC<Dashboard_eventProps> = ({ eventInfo, index }) =
                     <p>{eventInfo.description}</p>
                 </div>
 
-                <div className='w-full'>
+                <div className='w-full '>
                     <div className='flex '>
-                        <FontAwesomeIcon className='fa-rotate-180' icon={faComment} size='1x' />
+                        <FontAwesomeIcon className='fa-flip-horizontal' icon={faComment} size='1x' />
                     </div>
                 </div>
 

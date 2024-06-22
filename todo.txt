@@ -10,3 +10,5 @@ groups:
 events:
     - create event
 
+creating event:
+    - when on a group and creating a group, pressing refresh loses the current group

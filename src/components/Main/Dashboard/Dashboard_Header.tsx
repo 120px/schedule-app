@@ -11,7 +11,6 @@ const Dashboard_Header = () => {
     useEffect(() => {
 
     }, [])
-    console.log(currentGroup?.id)
 
     return (
         <div className='flex justify-between w-full py-8 align-middle'>

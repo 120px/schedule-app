@@ -1,5 +1,6 @@
 export default interface EventInfo {
     // group: string,
+    creatorName: string,
     address: string,
     date_for: {
         nanoseconds: number,

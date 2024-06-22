@@ -78,13 +78,24 @@ const Dashboard_feed: React.FC<Dashboard_feedProps> = ({ currentUser }) => {
 
     const getEventInformation = async (groupEventsArray: string[]) => {
         if (groupEventsArray !== undefined && groupEventsArray.length > 0) {
+
             const eventsData = await Promise.all(
                 groupEventsArray.map(async (event) => {
                     const groupDocRef = await doc(db, "events", event);
                     const docSnap = await getDoc(groupDocRef);
+
                     if (docSnap.exists()) {
                         const eventsObject = docSnap.data();
-                        return eventsObject
+                        const creatorId = eventsObject.creatorId;
+
+                        const userDocRef = doc(db, "users", creatorId);
+                        const userDocSnap = await getDoc(userDocRef);
+
+                        if (userDocSnap.exists()) {
+                            const userInfo = userDocSnap.data();
+                            eventsObject.creatorName = userInfo.data.username;
+                            return eventsObject;
+                        }
 
                     } else {
                         return null;

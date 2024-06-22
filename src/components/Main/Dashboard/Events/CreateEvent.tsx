@@ -34,6 +34,7 @@ const CreateEvent = () => {
         else
             //  TODO: handle this
             console.log("throw error here")
+        console.log(data)
 
         prepSubmitData(data)
 
@@ -52,16 +53,20 @@ const CreateEvent = () => {
     }
 
     const prepSubmitData = (data: CreateEventInfo) => {
-        data.creatorId = auth.currentUser!.uid;
-        data.created_at = new Date();
-        data.members = [`${data.creatorId}`];
-        data.date_for = new Date(data.date_for);
-
-        if (groupId !== undefined)
-            data.group = groupId;
-        else
-            return
-
+        console.log(currentGroup?.id)
+        try{
+            if ( currentGroup !== null && currentGroup?.id !== null){
+                data.group = currentGroup!.id;
+                data.creatorId = auth.currentUser!.uid;
+                data.created_at = new Date();
+                data.members = [`${data.creatorId}`];
+                data.date_for = new Date(data.date_for);
+            }
+            else
+                console.log("There is no current group")
+        }catch(error){
+            console.log(error)
+        }
     }
 
     const toggleModal = () => {
@@ -81,7 +86,7 @@ const CreateEvent = () => {
                         <span className='text-slate-500'>Create a new event & notify everyone in your group</span>
                     </div>
 
-                    <div>
+                    {/* <div>
                         <div className="relative max-w-sm">
 
                             <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Group</label>
@@ -99,6 +104,12 @@ const CreateEvent = () => {
 
                             </select>
                         </div>
+                    </div> */}
+
+                    <div className='mb-4'>
+                        <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Event Name</label>
+                        <input {...register("name")} name="name" id="name" className=" bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 
+                        dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="" />
                     </div>
 
                     <div className='flex flex-row justify-between mb-4'>
@@ -147,7 +158,7 @@ const CreateEvent = () => {
                     <div className='flex justify-between mt-10'>
 
                         <Link to={currentGroup != null && currentGroup.id ? `/group/${currentGroup!.id}/dashboard` : "/"} className='w-1/4 py-2 text-center bg-red-400 rounded-lg text-white'>Cancel</Link>
-                        <Link type='submit' to={currentGroup != null && currentGroup.id ? `/group/${currentGroup!.id}/dashboard` : "/"} className='w-1/4 py-2 text-center bg-createButton rounded-lg text-white '>Create</Link>
+                        <button type='submit' className='w-1/4 py-2 text-center bg-createButton rounded-lg text-white '>Create</button>
 
                     </div>
                 </form>
