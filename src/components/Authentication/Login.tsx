@@ -23,7 +23,6 @@ const Login = ({ toggleIsLogin, setUser }: authProps) => {
         try {
 
             const loginUser = await signInWithEmailAndPassword(auth, userInput["email"], userInput["password"])
-            console.log(loginUser)
             setUser(loginUser)
 
         } catch (error) {

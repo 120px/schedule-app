@@ -1,13 +1,15 @@
 import React, { useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
+import { useCurrentGroup } from '../../../../provider/CurrentGroupProvider';
 
 const DashboardRedirect = () => {
 
-    const { groupId } = useParams()
+    const { groupId } = useParams();
+    const { setCurrentGroup } = useCurrentGroup();
     const linkRedirection = groupId ? `/group/${groupId}/dashboard` : "/"
 
     return (
-        <Link to={linkRedirection}>
+        <Link to={"/"} onClick={() => setCurrentGroup({id : null, name: null})}>
             <div className='flex flex-row hover:bg-sidebarHover rounded-md px-1 py-1 hover:drop-shadow-md'>
                 <div className=''>
                     <svg preserveAspectRatio="xMidYMin" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 -3 29 29" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">

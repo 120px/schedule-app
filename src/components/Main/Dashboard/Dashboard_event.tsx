@@ -3,32 +3,39 @@ import EventInfo from '../../../models/Event/EventInfo'
 
 interface Dashboard_eventProps {
     eventInfo: EventInfo
+    index: number
 }
 
-const Dashboard_event: React.FC<Dashboard_eventProps> = ({ eventInfo }) => {
+const Dashboard_event: React.FC<Dashboard_eventProps> = ({ eventInfo, index }) => {
+
+    const count = () =>{
+        console.log(index)
+    }
+
     return (
 
         // Need to keep track of which group this event is coming from
         // should have a small footnote or something. a link that redirects to the group or post
 
-        <div className='w-full flex flex-col bg-cardBackground p-6 shadow-md rounded-md'>
-            <div className='flex flex-row'>
-                <div className="w-8 h-8 bg-red-400 rounded-full"></div>
-                <p className='pl-4 font-bold text-lg'>{"Event Creator"}</p>
-            </div>
-            <div className='text-center'>
-                <p>{eventInfo.name}Event Name</p>
-                <p>{eventInfo.time}</p>
-                <p>{eventInfo.address}</p>
-                <p></p>
-            </div>
-            <div className='mt-3 text-md'>
-                <p>{eventInfo.description}</p>
+        <div className={index == 0 ? 'mb-5' : "mb-5 mt-5"}>
+            <div className='w-full flex flex-col bg-cardBackground p-6 shadow-md rounded-md'>
+                <div className='flex flex-row'>
+                    <div className="w-8 h-8 bg-red-400 rounded-full"></div>
+                    <p className='pl-4 font-bold text-lg'>{"Event Creator"}</p>
+                </div>
+                <div className='text-center'>
+                    <p>{eventInfo.name}Event Name</p>
+                    <p>{eventInfo.time}</p>
+                    <p>{eventInfo.address}</p>
+                    <p></p>
+                </div>
+                <div className='mt-3 text-md'>
+                    <p>{eventInfo.description}</p>
+
+                </div>
 
             </div>
-
         </div>
-
     )
 }
 

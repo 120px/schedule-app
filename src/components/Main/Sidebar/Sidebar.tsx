@@ -8,9 +8,10 @@ import Sidebar_PastEvents from './Components/Sidebar_PastEvents'
 import Sidebar_Groups from './Components/Sidebar_Groups'
 import Sidebar_Profile from './Components/Sidebar_Profile'
 import Sidebar_Members from './Components/Sidebar_Members'
+import { useCurrentGroup } from '../../../provider/CurrentGroupProvider'
 
 const Sidebar = () => {
-
+    const { currentGroup } = useCurrentGroup();
     // List - make a list of things like restos, or places to visit
 
     return (
@@ -38,7 +39,8 @@ const Sidebar = () => {
                         <Sidebar_Calendar/>
                         <Sidebar_Poll/>
                         <Sidebar_PastEvents/>
-                        <Sidebar_Members/>
+                        {currentGroup?.id !== null ? <Sidebar_Members/> : null}
+                            
                     </div>
                 </div>
 

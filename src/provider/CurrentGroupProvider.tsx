@@ -1,8 +1,8 @@
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 
 interface Group {
-  id: string;
-  name: string;
+  id: string | null;
+  name: string | null;
 }
 
 interface CurrentGroupContextProps {

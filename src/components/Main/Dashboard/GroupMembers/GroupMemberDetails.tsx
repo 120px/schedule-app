@@ -10,7 +10,7 @@ const GroupMemberDetails: React.FC<GroupMemberDetails> = ({ member }: GroupMembe
         <li className="py-3 sm:py-4">
             <div className="flex items-center space-x-4">
                 <div className="flex-shrink-0">
-                    <img className="w-8 h-8 rounded-full" src="https://flowbite.com/docs/images/people/profile-picture-1.jpg" alt="Neil image" />
+                    <img className="w-8 h-8 rounded-full" src="" alt="profile picture" />
                 </div>
                 <div className="flex-1 min-w-0">
                     <p className="text-sm font-medium text-gray-900 truncate dark:text-white">

@@ -12,11 +12,7 @@ const MyGroups = () => {
     const [userGroups, setUserGroups] = useState<Array<GroupData>>()
 
     useEffect(() => {
-        console.log(auth.currentUser?.uid)
         getUserGroups()
-
-        console.log(userGroups)
-
         return () => {
 
         }
@@ -25,7 +21,6 @@ const MyGroups = () => {
 
     const getUserGroups = async () => {
         // const userGroupCollectionRef = doc(db, "user", (auth.currentUser!.uid).toString())
-        console.log(auth.currentUser)
         const userData = doc(db, "users", auth.currentUser!.uid)
         const userDataSnap = await getDoc(userData);
 
@@ -48,7 +43,6 @@ const MyGroups = () => {
             data = doc(db, "groups", groups[i])
             data2 = (await getDoc(data)).data()
             data2!.groupData.id = groups[i]
-            console.log("Data:" + data2)
             arr.push(data2)
         }
 

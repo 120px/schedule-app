@@ -54,7 +54,6 @@ const CreateEvent = () => {
         data.created_at = new Date();
         data.members = [`${data.creatorId}`];
         data.date_for = new Date(data.date_for);
-        console.log(data.date_for)
 
         if (groupId !== undefined)
             data.group = groupId;

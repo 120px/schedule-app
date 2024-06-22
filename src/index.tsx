@@ -10,6 +10,7 @@ import MyGroups from './components/Main/Dashboard/Groups/MyGroups';
 import GroupMembers from './components/Main/Dashboard/GroupMembers/GroupMembers';
 import CreateEvent from './components/Main/Dashboard/Events/CreateEvent';
 import Profile from './components/Main/Dashboard/Profile/Profile';
+import { CurrentGroupProvider } from './provider/CurrentGroupProvider';
 
 const router = createBrowserRouter([
   {
@@ -53,10 +54,13 @@ const router = createBrowserRouter([
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+
 root.render(
-  <React.StrictMode>
-    <RouterProvider router={router} />
-  </React.StrictMode>
+  <CurrentGroupProvider>
+    <React.StrictMode>
+      <RouterProvider router={router} />
+    </React.StrictMode>
+  </CurrentGroupProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function

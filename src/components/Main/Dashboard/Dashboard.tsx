@@ -8,6 +8,7 @@ import Create from './Create/Create';
 import Dashboard_Header from './Dashboard_Header';
 import Dashboard_feed from './Dashboard_feed';
 import { User } from '../../../models/User/User';
+import { useCurrentGroup } from '../../../provider/CurrentGroupProvider';
 
 //https://dribbble.com/shots/19419939-Admin-dashboard-analytics-UX
 //https://dribbble.com/shots/20203136-Citrix-Admin-Dashboard-Analytics-UX-UI
@@ -17,31 +18,21 @@ import { User } from '../../../models/User/User';
 //https://dribbble.com/shots/21864904-Feed-Layout-Social-Media-App
 const Dashboard = () => {
 
+    const { currentGroup } = useCurrentGroup();
     const [currentUser, setCurrentUser] = useState<User | undefined>()
-    // Right side: 
-    // Upcoming events
-
-    // Left side: more social aspect, like a feed
-    // See what people are doing, comments, photos etc
-    // Recently added polls
-    // Recently added events
-
-    // Group activity
-    //  newly created events / polls etc
 
     useEffect(() => {
-        const fetchUser = async () =>{
+        const fetchUser = async () => {
             await getCurrentUser()
         }
-        
+        console.log("dashboard")
         fetchUser()
-    }, [])
+    }, [currentGroup])
 
     const getCurrentUser = async () => {
         const userData = await doc(db, "users", auth.currentUser!.uid)
         const userDataSnap = await getDoc(userData);
         setCurrentUser(userDataSnap.data() as User)
-
     }
 
     return (

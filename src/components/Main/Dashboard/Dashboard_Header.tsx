@@ -1,18 +1,22 @@
 import React, { useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import GroupSearchBar from './GroupSearchBar/GroupSearchBar'
+import { useCurrentGroup } from '../../../provider/CurrentGroupProvider';
 
 const Dashboard_Header = () => {
 
+    const { currentGroup } = useCurrentGroup();
     const { groupId } = useParams()
 
     useEffect(() => {
 
-    })
+    }, [])
+    console.log(currentGroup?.id)
 
     return (
-        <div className='flex justify-between w-full py-8'>
-            <span className='text-xl font-bold'>Dashboard</span>
+        <div className='flex justify-between w-full py-8 align-middle'>
+            {currentGroup?.id !== null && currentGroup !== null ? <span className='text-2xl self-center font-bold'>{currentGroup?.name}</span> :
+                <span className='text-2xl self-center font-bold'>My Dashboard</span>}
 
             <GroupSearchBar />
 

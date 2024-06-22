@@ -15,13 +15,13 @@ interface Dashboard_feedProps {
 const Dashboard_feed: React.FC<Dashboard_feedProps> = ({ currentUser }) => {
 
     const { groupId } = useParams()
-    const [eventIds, setEventIds] = useState<GroupEvents[]>([]);
+    // const [eventIds, setEventIds] = useState<GroupEvents[]>([]);
     const [events, setEvents] = useState<EventInfo[]>()
     const [posts, setPosts] = useState<any>();
 
     useEffect(() => {
         const fetchEventsAndPostsAsync = async () => {
-            let eventIds = await fetchEventIds();
+            var eventIds = await fetchEventIds();
             await getEventInformation(eventIds as string[])
             // await fetchTopTenLatestPostsCreated();
         }
@@ -33,7 +33,7 @@ const Dashboard_feed: React.FC<Dashboard_feedProps> = ({ currentUser }) => {
     }, [currentUser])
 
     const fetchEventIds = async () => {
-
+        console.log("fetchEventIds")
         // if user is looking at a specific group, we will get the 10 most recent events OF THAT GROUP
         // if user is NOT looking at a group, we will get the 10 most recent events of ALL their groups
         if (groupId == null || groupId == undefined) {
@@ -45,9 +45,7 @@ const Dashboard_feed: React.FC<Dashboard_feedProps> = ({ currentUser }) => {
                             const docSnap = await getDoc(groupDocRef);
                             if (docSnap.exists() && docSnap.data().events !== undefined) {
                                 const eventsObject = docSnap.data().events;
-                                console.log(docSnap.data())
                                 const combinedEventsArray = Object.values(eventsObject).flat();
-                                console.log(combinedEventsArray)
                                 return combinedEventsArray;
                             } else {
                                 return null;
@@ -62,23 +60,24 @@ const Dashboard_feed: React.FC<Dashboard_feedProps> = ({ currentUser }) => {
             }
         } else {
             const eventsDocRef = await doc(db, "groups", groupId)
-            await getDoc(eventsDocRef)
-                .then((docSnap) => {
-                    if (docSnap.exists()) {
-                        setEventIds(docSnap.data().events);
-                    } else {
-                        console.log("no documents");
+            try {
+                const docSnap = await getDoc(eventsDocRef);
+                if (docSnap.exists()) {
+                    if (docSnap.data().events.length > 0) {
+                        const eventIds = docSnap.data().events;
+                        console.log(eventIds)
+                        return eventIds;
                     }
-                })
-                .catch((error) => {
-                    console.error("Error getting document:", error);
-                });
+                }
+            } catch (error) {
+                console.log("Error getting document")
+            }
         }
 
     }
 
-    const getEventInformation = async (groupEventsArray : string[]) => {
-        if (groupEventsArray.length > 0){
+    const getEventInformation = async (groupEventsArray: string[]) => {
+        if (groupEventsArray !== undefined && groupEventsArray.length > 0) {
             const eventsData = await Promise.all(
                 groupEventsArray.map(async (event) => {
                     const groupDocRef = await doc(db, "events", event);
@@ -90,7 +89,7 @@ const Dashboard_feed: React.FC<Dashboard_feedProps> = ({ currentUser }) => {
                     } else {
                         return null;
                     }
-                
+
                 })
             );
             const validEvents = eventsData.filter(data => data !== null)
@@ -114,7 +113,6 @@ const Dashboard_feed: React.FC<Dashboard_feedProps> = ({ currentUser }) => {
 
     return (
         <div className='w-3/4 mx-auto'>
-            {CurrentGroupProvider !== undefined ? <h1>HERE</h1> : null}
             {events ? events.map((eventInfo, index) => (
                 <Dashboard_event key={index} eventInfo={eventInfo} ></Dashboard_event>
             )) : null}
