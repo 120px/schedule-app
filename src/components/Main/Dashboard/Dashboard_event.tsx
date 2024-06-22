@@ -1,5 +1,7 @@
 import React from 'react'
 import EventInfo from '../../../models/Event/EventInfo'
+import { faComment } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 interface Dashboard_eventProps {
     eventInfo: EventInfo
@@ -8,7 +10,7 @@ interface Dashboard_eventProps {
 
 const Dashboard_event: React.FC<Dashboard_eventProps> = ({ eventInfo, index }) => {
 
-    const count = () =>{
+    const count = () => {
         console.log(index)
     }
 
@@ -31,7 +33,12 @@ const Dashboard_event: React.FC<Dashboard_eventProps> = ({ eventInfo, index }) =
                 </div>
                 <div className='mt-3 text-md'>
                     <p>{eventInfo.description}</p>
+                </div>
 
+                <div className='w-full'>
+                    <div className='flex '>
+                        <FontAwesomeIcon className='fa-rotate-180' icon={faComment} size='1x' />
+                    </div>
                 </div>
 
             </div>

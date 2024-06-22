@@ -22,12 +22,12 @@ const GroupTile: React.FC<GroupTileProps> = ({ group }: GroupTileProps) => {
                 </h5>
 
             </div>
-            <div className="p-3 pt-0 text-center flex">
-                <Link to={`/group/${group.groupData.id}/dashboard`} data-ripple-light="true" type="button" className="bg-createButton"
+            <div className="p-3 pt-0 text-center flex mx-auto">
+                {/* <Link to={`/group/${group.groupData.id}/dashboard`} data-ripple-light="true" type="button" className="bg-createButton"
                 >
                     info
-                </Link>
-                <Link to={`/group/${group.groupData.id}/dashboard`} data-ripple-light="true" type="button" className="select-none rounded-lg bg-blue-500 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-blue-500/20 transition-all hover:shadow-lg hover:shadow-blue-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                </Link> */}
+                <Link to={`/group/${group.groupData.id}/dashboard`} data-ripple-light="true" type="button" className="rounded-lg bg-createButton py-3 px-6 text-white"
                     onClick={() => setCurrentGroup({ id: group.groupData.id, name: group.groupData.name })}>
                     Visit
                 </Link>

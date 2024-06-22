@@ -23,7 +23,8 @@ const Dashboard_Header = () => {
             <div className='flex'>
                 {/* <span>Create a Post</span> */}
 
-                <Link className='w-full rounded-lg py-3 px-5 bg-createButton text-white' to={`/group/${groupId}/createevent`}>Create</Link>
+                <Link className='w-full rounded-lg py-3 px-5 bg-createButton text-white' 
+                to={currentGroup != null && currentGroup.id != undefined ? `/group/${groupId}/createevent` : "/createevent"}>Create</Link>
             </div>
         </div>
     )

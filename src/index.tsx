@@ -30,6 +30,10 @@ const router = createBrowserRouter([
         element: <CreateEvent />
       },
       {
+        path: "/createevent",
+        element: <CreateEvent />
+      },
+      {
         path: "/mygroups",
         element: <MyGroups />
       },

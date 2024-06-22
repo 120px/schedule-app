@@ -55,7 +55,7 @@ const MyGroups = () => {
 
     return (
 
-        <div className='flex flex-col w-full'>
+        <div className='flex flex-col w-full mt-4'>
             <div className='mx-auto flex w-full justify-center gap-10'>
                 <form className="max-w-md w-64">
                     <label for="default-search" className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>

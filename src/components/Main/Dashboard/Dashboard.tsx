@@ -13,8 +13,9 @@ import { useCurrentGroup } from '../../../provider/CurrentGroupProvider';
 //https://dribbble.com/shots/19419939-Admin-dashboard-analytics-UX
 //https://dribbble.com/shots/20203136-Citrix-Admin-Dashboard-Analytics-UX-UI
 //https://dribbble.com/shots/17103862-Pansos-Social-Media-Dashboard-App
-//https://dribbble.com/shots/23710244-Tribe-social-feed
 
+//https://dribbble.com/shots/23710244-Tribe-social-feed
+//https://dribbble.com/shots/21139476-Feed-Social-Media-Web-App
 //https://dribbble.com/shots/21864904-Feed-Layout-Social-Media-App
 const Dashboard = () => {
 

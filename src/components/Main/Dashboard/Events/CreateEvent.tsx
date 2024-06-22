@@ -4,6 +4,7 @@ import { db } from '../../../../firebase-config';
 import { auth } from "../../../../firebase-config"
 import { useForm } from 'react-hook-form';
 import { Link, useParams } from 'react-router-dom';
+import { useCurrentGroup } from '../../../../provider/CurrentGroupProvider';
 
 
 interface Props {
@@ -13,6 +14,7 @@ interface Props {
 const CreateEvent = () => {
 
     const { groupId } = useParams()
+    const { currentGroup } = useCurrentGroup();
 
     //https://dribbble.com/shots/14182509-Create-event
     //https://dribbble.com/shots/18964945-Calendar-create-event
@@ -79,6 +81,26 @@ const CreateEvent = () => {
                         <span className='text-slate-500'>Create a new event & notify everyone in your group</span>
                     </div>
 
+                    <div>
+                        <div className="relative max-w-sm">
+
+                            <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Group</label>
+                            <select id="countries" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 
+                            focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white 
+                            dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                {currentGroup != null ? <option selected>{currentGroup.name}</option> :
+                                    <>
+                                        <option value="US">United States</option>
+                                        <option value="CA">Canada</option>
+                                        <option value="FR">France</option>
+                                        <option value="DE">Germany</option>
+                                    </>
+                                }
+
+                            </select>
+                        </div>
+                    </div>
+
                     <div className='flex flex-row justify-between mb-4'>
                         <div className="relative max-w-sm">
 
@@ -124,12 +146,8 @@ const CreateEvent = () => {
 
                     <div className='flex justify-between mt-10'>
 
-                        <div className='w-4/12'>
-                            <Link to={"/"} className='bg-red-100 w-full rounded-lg text-white hover:bg-sidebarHover'>Cancel</Link>
-                        </div>
-                        <div className='w-4/12'>
-                            <Link type='submit' to={"/"} className='text-center bg-createButton w-full rounded-lg text-white py-3 hover:bg-sidebarHover'>Create</Link>
-                        </div>
+                        <Link to={currentGroup != null && currentGroup.id ? `/group/${currentGroup!.id}/dashboard` : "/"} className='w-1/4 py-2 text-center bg-red-400 rounded-lg text-white'>Cancel</Link>
+                        <Link type='submit' to={currentGroup != null && currentGroup.id ? `/group/${currentGroup!.id}/dashboard` : "/"} className='w-1/4 py-2 text-center bg-createButton rounded-lg text-white '>Create</Link>
 
                     </div>
                 </form>
