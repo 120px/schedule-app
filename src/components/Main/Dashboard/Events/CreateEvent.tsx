@@ -3,18 +3,17 @@ import { addDoc, arrayUnion, collection, doc, setDoc, updateDoc } from "firebase
 import { db } from '../../../../firebase-config';
 import { auth } from "../../../../firebase-config"
 import { useForm } from 'react-hook-form';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useLocation } from 'react-router-dom';
 import { useCurrentGroup } from '../../../../provider/CurrentGroupProvider';
-
-
-interface Props {
-
-}
+import DropdownMenu from '../../../DropdownMenu';
 
 const CreateEvent = () => {
 
     const { groupId } = useParams()
     const { currentGroup } = useCurrentGroup();
+    const location = useLocation()
+    const currentUsersGroups = location.state.groups;
+    console.log(currentUsersGroups)
 
     //https://dribbble.com/shots/14182509-Create-event
     //https://dribbble.com/shots/18964945-Calendar-create-event
@@ -34,7 +33,6 @@ const CreateEvent = () => {
         else
             //  TODO: handle this
             console.log("throw error here")
-        console.log(data)
 
         prepSubmitData(data)
 
@@ -69,7 +67,7 @@ const CreateEvent = () => {
         }
     }
 
-    const toggleModal = () => {
+    const toggleDropdownMenu = () =>{
 
     }
 
@@ -85,26 +83,8 @@ const CreateEvent = () => {
                         <h3 className='text-3xl font-semibold mb-4'>Create an event</h3>
                         <span className='text-slate-500'>Create a new event & notify everyone in your group</span>
                     </div>
-
-                    {/* <div>
-                        <div className="relative max-w-sm">
-
-                            <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Group</label>
-                            <select id="countries" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 
-                            focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white 
-                            dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                {currentGroup != null ? <option selected>{currentGroup.name}</option> :
-                                    <>
-                                        <option value="US">United States</option>
-                                        <option value="CA">Canada</option>
-                                        <option value="FR">France</option>
-                                        <option value="DE">Germany</option>
-                                    </>
-                                }
-
-                            </select>
-                        </div>
-                    </div> */}
+                    
+                    <DropdownMenu currentUsersGroups={currentUsersGroups}/>
 
                     <div className='mb-4'>
                         <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Event Name</label>

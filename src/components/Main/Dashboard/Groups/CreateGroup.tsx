@@ -27,7 +27,6 @@ const CreateGroup = () => {
       })
     })
 
-    console.log(groupData)
     //Reroute to home of group
   }
 

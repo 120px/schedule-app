@@ -26,7 +26,6 @@ const Dashboard = () => {
         const fetchUser = async () => {
             await getCurrentUser()
         }
-        console.log("dashboard")
         fetchUser()
     }, [currentGroup])
 
@@ -38,7 +37,7 @@ const Dashboard = () => {
 
     return (
         <div className='flex flex-col mx-auto w-4/5'>
-            <Dashboard_Header />
+            <Dashboard_Header currentUser={currentUser}/>
             <Dashboard_feed currentUser={currentUser}></Dashboard_feed>
 
         </div>

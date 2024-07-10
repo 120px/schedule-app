@@ -2,12 +2,16 @@ import React, { useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import GroupSearchBar from './GroupSearchBar/GroupSearchBar'
 import { useCurrentGroup } from '../../../provider/CurrentGroupProvider';
+import { User } from '../../../models/User/User';
 
-const Dashboard_Header = () => {
+interface Dashboard_feedProps {
+    currentUser: User | undefined
+}
+
+const Dashboard_Header: React.FC<Dashboard_feedProps> = ({ currentUser }) => {
 
     const { currentGroup } = useCurrentGroup();
     const { groupId } = useParams()
-
     useEffect(() => {
 
     }, [])
@@ -23,7 +27,7 @@ const Dashboard_Header = () => {
                 {/* <span>Create a Post</span> */}
 
                 <Link className='w-full rounded-lg py-3 px-5 bg-createButton text-white' 
-                to={currentGroup != null && currentGroup.id != undefined ? `/group/${groupId}/createevent` : "/createevent"}>Create</Link>
+                to={currentGroup != null && currentGroup.id != undefined ? `/group/${groupId}/createevent` : "/createevent"} state={{groups: currentUser?.groups}}>Create</Link>
             </div>
         </div>
     )

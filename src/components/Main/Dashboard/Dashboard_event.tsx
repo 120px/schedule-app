@@ -10,8 +10,6 @@ interface Dashboard_eventProps {
 
 const Dashboard_event: React.FC<Dashboard_eventProps> = ({ eventInfo, index }) => {
 
-    console.log(eventInfo);
-
     return (
 
         // Need to keep track of which group this event is coming from

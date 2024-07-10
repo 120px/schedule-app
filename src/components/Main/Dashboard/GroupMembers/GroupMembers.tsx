@@ -47,7 +47,6 @@ const GroupMembers = () => {
                 arr.push(data2!.data);
             }
         }
-        console.log(arr)
         setGroupMembers(arr)
     }
 

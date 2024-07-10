@@ -33,7 +33,6 @@ const Dashboard_feed: React.FC<Dashboard_feedProps> = ({ currentUser }) => {
     }, [currentUser])
 
     const fetchEventIds = async () => {
-        console.log("fetchEventIds")
         // if user is looking at a specific group, we will get the 10 most recent events OF THAT GROUP
         // if user is NOT looking at a group, we will get the 10 most recent events of ALL their groups
         if (groupId == null || groupId == undefined) {
@@ -65,7 +64,6 @@ const Dashboard_feed: React.FC<Dashboard_feedProps> = ({ currentUser }) => {
                 if (docSnap.exists()) {
                     if (docSnap.data().events.length > 0) {
                         const eventIds = docSnap.data().events;
-                        console.log(eventIds)
                         return eventIds;
                     }
                 }
