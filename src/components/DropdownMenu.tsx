@@ -14,13 +14,12 @@ const DropdownMenu: React.FC<DropdownMenuProps> = ({ currentUsersGroups }) => {
     const [selectedGroup, setSelectedGroup] = useState<null | string>(null)
 
     const handleDropdownToggle = () => {
-        console.log("CLICK")
-        // Toggle the entries visibility
         setIsDropdownOpen(!isDropdownOpen);
     }
 
     const handleGroupSelect = (group: string) =>{
-        setSelectedGroup(group)
+        setSelectedGroup(group);
+        setIsDropdownOpen(!isDropdownOpen);
     }
 
     return (
@@ -41,9 +40,9 @@ const DropdownOptions: React.FC<DropdownOptionsProps> = ({currentUsersGroups, ha
 
     return (
         currentUsersGroups.length > 0 ?
-            <div className="bg-white rounded-md shadow-lg absolute z-10 left-44 mt-2 max-h-28 overflow-hidden overflow-y-auto">
+            <div className="bg-white rounded-md shadow-lg absolute z-10 left-44 mt-2 max-h-28 overflow-hidden overflow-y-auto p-3">
                 {currentUsersGroups.map((groupId, index) => (
-                    <li onClick={(e) => handleGroupSelect(e.currentTarget.innerHTML)} className="pl-6 list-none hover:bg-gray-200" key={index}>{groupId}</li>
+                    <li onClick={(e) => handleGroupSelect(e.currentTarget.innerHTML)} className="w-full pl-4 list-none hover:bg-gray-200" key={index}>{groupId}</li>
                 ))}
             </div> : null
     )

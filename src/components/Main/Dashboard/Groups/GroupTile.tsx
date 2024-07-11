@@ -18,7 +18,7 @@ const GroupTile: React.FC<GroupTileProps> = ({ group }: GroupTileProps) => {
             </div>
             <div className="p-6">
                 <h5 className="text-center mb-2 block font-sans text-xl font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased">
-                    {group !== undefined ? group.groupData.name : null}
+                    {group !== undefined ? group.groupData.groupName : null}
                 </h5>
 
             </div>
@@ -28,7 +28,7 @@ const GroupTile: React.FC<GroupTileProps> = ({ group }: GroupTileProps) => {
                     info
                 </Link> */}
                 <Link to={`/group/${group.groupData.id}/dashboard`} data-ripple-light="true" type="button" className="rounded-lg bg-createButton py-3 px-6 text-white"
-                    onClick={() => setCurrentGroup({ id: group.groupData.id, name: group.groupData.name })}>
+                    onClick={() => setCurrentGroup({ id: group.groupData.id, name: group.groupData.groupName })}>
                     Visit
                 </Link>
             </div>
