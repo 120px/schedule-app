@@ -2,5 +2,8 @@ export interface User {
     data:{
         username: string
     }, 
-    groups: [string]
+    groups: [{
+        id: string,
+        name: string
+    }]
 }

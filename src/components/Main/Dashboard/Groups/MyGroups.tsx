@@ -19,7 +19,6 @@ const MyGroups = () => {
     }, [])
 
     const getUserGroups = async () => {
-        // const userGroupCollectionRef = doc(db, "user", (auth.currentUser!.uid).toString())
         const userData = doc(db, "users", auth.currentUser!.uid)
         const userDataSnap = await getDoc(userData);
 
@@ -34,19 +33,28 @@ const MyGroups = () => {
         }
     }
 
-    const getGroupData = async (groups: Array<string>) => {
-        let arr: any = []
-        let data
-        let data2
-        for (let i = 0; i < groups.length; i++) {
-            data = doc(db, "groups", groups[i])
-            data2 = (await getDoc(data)).data()
-            data2!.groupData.id = groups[i]
-            arr.push(data2)
-        }
+    const getGroupData = async (groups: Array<{ id: string }>): Promise<void> => {
+        try {
+            const promises = groups.map(async (group) => {
+                const docRef = doc(db, "groups", group.id);
+                const docSnap = await getDoc(docRef);
+                const data = docSnap.data()
 
-        setUserGroups(arr)
-    }
+                if (data) {
+                    data.groupData.id = group.id;
+                }
+
+                return data;
+            });
+
+            const results = await Promise.all(promises);
+            const filteredResults = results.filter((result) => result !== undefined) as GroupData[];
+
+            setUserGroups(filteredResults);
+        } catch (error) {
+            console.error("Error fetching group data:", error);
+        }
+    };
 
     // Tiles:
     // # of Members, icons of members

@@ -22,10 +22,10 @@ const CreateGroup = () => {
     await addDoc(collection(db, "groups"), {
       groupData
     }).then((docRef) => {
-      updateDoc(doc(db, "users", auth.currentUser!.uid,), {
-        groups: arrayUnion(docRef.id)
-      })
-    })
+      updateDoc(doc(db, "users", auth.currentUser!.uid), {
+        groups: arrayUnion( {id: docRef.id, name: groupData.groupName})
+      });
+    });    
 
     //Reroute to home of group
   }

@@ -7,13 +7,17 @@ import { Link, useParams, useLocation } from 'react-router-dom';
 import { useCurrentGroup } from '../../../../provider/CurrentGroupProvider';
 import DropdownMenu from '../../../DropdownMenu';
 
+interface Group{
+    id: string
+    name: string
+}
+
 const CreateEvent = () => {
 
     const { groupId } = useParams()
     const { currentGroup } = useCurrentGroup();
     const location = useLocation()
-    const currentUsersGroups = location.state.groups;
-    console.log(currentUsersGroups)
+    const currentUsersGroups = location.state.groups as Group;
 
     //https://dribbble.com/shots/14182509-Create-event
     //https://dribbble.com/shots/18964945-Calendar-create-event
