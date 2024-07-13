@@ -22,7 +22,7 @@ const Dashboard_event: React.FC<Dashboard_eventProps> = ({ eventInfo, index }) =
                     <p className='pl-4 font-bold text-lg'>{eventInfo.creatorName}</p>
                 </div>
                 <div className='text-center'>
-                    <p>{eventInfo.name}Event Name</p>
+                    <p>{eventInfo.name}</p>
                     <p>{eventInfo.time}</p>
                     <p>{eventInfo.address}</p>
                     <p></p>

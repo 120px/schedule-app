@@ -5,10 +5,11 @@ import { auth } from "../../../../firebase-config"
 import { useForm } from 'react-hook-form';
 import { Link, useParams, useLocation } from 'react-router-dom';
 import { useCurrentGroup } from '../../../../provider/CurrentGroupProvider';
-import DropdownMenu from '../../../DropdownMenu';
+import DropdownMenu from './DropdownMenu';
+import { useState } from 'react';
 
-interface Group{
-    id: string
+interface Groups {
+    id: string,
     name: string
 }
 
@@ -17,7 +18,9 @@ const CreateEvent = () => {
     const { groupId } = useParams()
     const { currentGroup } = useCurrentGroup();
     const location = useLocation()
-    const currentUsersGroups = location.state.groups as Group;
+    const currentUsersGroups = location.state.groups as Groups[]
+    console.log(currentUsersGroups)
+    const [selectedGroup, setSelectedGroup] = useState<null | string>(null)
 
     //https://dribbble.com/shots/14182509-Create-event
     //https://dribbble.com/shots/18964945-Calendar-create-event
@@ -32,13 +35,14 @@ const CreateEvent = () => {
     });
 
     const handleFormSubmit = async (data: CreateEventInfo) => {
+        if (currentGroup?.id == null)
+            // We are not visiting a group
+            data.group = selectedGroup!
         if (auth !== null || auth !== undefined)
             data.creatorId = auth.currentUser!.uid
         else
             //  TODO: handle this
             console.log("throw error here")
-
-        prepSubmitData(data)
 
         try {
             await addDoc(collection(db, "events"), {
@@ -54,30 +58,13 @@ const CreateEvent = () => {
         }
     }
 
-    const prepSubmitData = (data: CreateEventInfo) => {
-        console.log(currentGroup?.id)
-        try{
-            if ( currentGroup !== null && currentGroup?.id !== null){
-                data.group = currentGroup!.id;
-                data.creatorId = auth.currentUser!.uid;
-                data.created_at = new Date();
-                data.members = [`${data.creatorId}`];
-                data.date_for = new Date(data.date_for);
-            }
-            else
-                console.log("There is no current group")
-        }catch(error){
-            console.log(error)
-        }
-    }
-
-    const toggleDropdownMenu = () =>{
+    const toggleDropdownMenu = () => {
 
     }
 
     return (
-        <div className=''>
-            <div className='absolute top-0 right-0 bottom-0 left-0 m-auto shadow-xl max-w-xl bg-white h-fit mx-auto p-20 '>
+        <div className='mx-auto mt-10'>
+            <div className=' m-auto shadow-xl max-w-xl bg-white mx-auto pl-20 pr-20 pt-10 pb-10'>
 
                 <form onSubmit={handleSubmit((data) => {
 
@@ -87,8 +74,12 @@ const CreateEvent = () => {
                         <h3 className='text-3xl font-semibold mb-4'>Create an event</h3>
                         <span className='text-slate-500'>Create a new event & notify everyone in your group</span>
                     </div>
-                    
-                    <DropdownMenu currentUsersGroups={currentUsersGroups}/>
+
+                    {currentGroup?.id !== null ? null : <DropdownMenu
+                        setSelectedGroup={setSelectedGroup}
+                        selectedGroup={selectedGroup}
+                        currentUsersGroups={currentUsersGroups} />
+                    }
 
                     <div className='mb-4'>
                         <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Event Name</label>
@@ -127,7 +118,7 @@ const CreateEvent = () => {
 
                     <div className='mb-2'>
                         <div>
-                            <input type="checkbox"></input>
+                            <input {...register("urgent")} name="urgent" id="urgent" type="checkbox"></input>
                             <label className='pl-2 font-normal'>Urgent</label>
                         </div>
                     </div>
