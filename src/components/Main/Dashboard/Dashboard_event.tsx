@@ -21,9 +21,11 @@ const Dashboard_event: React.FC<Dashboard_eventProps> = ({ eventInfo, index }) =
                     <div className="w-8 h-8 bg-red-400 rounded-full"></div>
                     <p className='pl-4 font-bold text-lg'>{eventInfo.creatorName}</p>
                 </div>
-                <div className='text-center'>
-                    <p>{eventInfo.name}</p>
-                    <p>{eventInfo.time}</p>
+                <div className='w-3/4 mx-auto'>
+                    <div className="">
+                        <p className='font-bold text-xl'>{eventInfo.name}</p> 
+                        <p className='pl-10 self-baseline'>@ {eventInfo.time}</p>
+                    </div>
                     <p>{eventInfo.address}</p>
                     <p></p>
                 </div>

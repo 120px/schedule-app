@@ -34,7 +34,7 @@ const DropdownMenu: React.FC<CreateEventProps> = ({ setSelectedGroup, selectedGr
         <div>
 
             <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Group</label>
-            <div onClick={() => handleDropdownToggle()} className='w-2/3 flex justify-between text-center mx-auto rounded-md mb-2 border-2 border-gray-200 pl-4 pr-4 pt-2 pb-2'>
+            <div onClick={() => handleDropdownToggle()} className='w-full flex justify-between text-center rounded-md mb-2 border-2 border-gray-200 pl-4 pr-4 pt-2 pb-2'>
                 <span className="">{selectedGroup != null ? selectedGroup : "Select a group"}</span>
 
                 <svg className="ml-2 h-4 w-4 self-center" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
