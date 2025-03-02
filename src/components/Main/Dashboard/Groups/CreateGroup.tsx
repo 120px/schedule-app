@@ -3,6 +3,7 @@ import CreateGroupInfo from '../../../../models/Group/CreateGroupInfo'
 import { addDoc, arrayUnion, collection, doc, setDoc, updateDoc } from 'firebase/firestore'
 import { useForm } from 'react-hook-form'
 import { v4 as uuidv4 } from "uuid"
+import { Link } from 'react-router-dom'
 
 const CreateGroup = () => {
 
@@ -23,9 +24,9 @@ const CreateGroup = () => {
       groupData
     }).then((docRef) => {
       updateDoc(doc(db, "users", auth.currentUser!.uid), {
-        groups: arrayUnion( {id: docRef.id, name: groupData.groupName})
+        groups: arrayUnion({ id: docRef.id, name: groupData.groupName })
       });
-    });    
+    });
 
     //Reroute to home of group
   }
@@ -43,7 +44,7 @@ const CreateGroup = () => {
     <div className='w-1/2 mx-auto'>
 
       <form onSubmit={handleSubmit(onSubmit)} className='mt-6'>
-        <div className='w-1/2'>
+        <div className=''>
           <div className='mb-8 text-center'>
             <h3 className='text-3xl font-semibold mb-4'>Create a Group</h3>
             <span className='text-slate-500'>Invite your friends, create events</span>
@@ -70,7 +71,7 @@ const CreateGroup = () => {
           <div className='flex justify-between mt-10'>
 
             <div className='w-4/12 mx-auto'>
-              <a className='bg-white-full rounded-md text-gray-500 py-3 hover:cursor-pointer'>Cancel</a>
+              <Link className='bg-white-full rounded-md text-gray-500 py-3 hover:cursor-pointer' to={"/MyGroups"}>Cancel</Link>
             </div>
             <div className='w-4/12'>
               <button type='submit' className='bg-orange-400 w-full rounded-lg text-white py-3 hover:bg-orange-600'>Create</button>

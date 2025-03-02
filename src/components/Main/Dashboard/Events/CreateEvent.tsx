@@ -64,80 +64,78 @@ const CreateEvent = () => {
 
     return (
         <div className='mx-auto mt-10'>
-            <div className=' m-auto shadow-xl max-w-xl bg-white mx-auto pl-20 pr-20 pt-10 pb-10'>
 
-                <form onSubmit={handleSubmit((data) => {
+            <form onSubmit={handleSubmit((data) => {
 
-                    handleFormSubmit(data)
-                })}>
-                    <div className='mb-8 '>
-                        <h3 className='text-3xl font-semibold mb-4'>Create an event</h3>
-                        <span className='text-slate-500'>Create a new event & notify everyone in your group</span>
-                    </div>
+                handleFormSubmit(data)
+            })}>
+                <div className='mb-8 '>
+                    <h3 className='text-3xl font-semibold mb-4'>Create an event</h3>
+                    <span className='text-slate-500'>Create a new event & notify everyone in your group</span>
+                </div>
 
-                    {currentGroup?.id !== null ? null : <DropdownMenu
-                        setSelectedGroup={setSelectedGroup}
-                        selectedGroup={selectedGroup}
-                        currentUsersGroups={currentUsersGroups} />
-                    }
+                {currentGroup?.id !== null ? null : <DropdownMenu
+                    setSelectedGroup={setSelectedGroup}
+                    selectedGroup={selectedGroup}
+                    currentUsersGroups={currentUsersGroups} />
+                }
 
-                    <div className='mb-4'>
-                        <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Event Name</label>
-                        <input {...register("name")} name="name" id="name" className=" bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 
+                <div className='mb-4'>
+                    <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Event Name</label>
+                    <input {...register("name")} name="name" id="name" className=" bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 
                         dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="" />
+                </div>
+
+                <div className='flex flex-row justify-between mb-4'>
+                    <div className="relative max-w-sm">
+
+                        <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Date</label>
+                        <input {...register("date_for")} type="date" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 
+                    block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select date" />
                     </div>
 
-                    <div className='flex flex-row justify-between mb-4'>
-                        <div className="relative max-w-sm">
-
-                            <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Date</label>
-                            <input {...register("date_for")} type="date" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 
+                    <div className="relative max-w-sm">
+                        <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Time</label>
+                        <input {...register("time")} type="time" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 
                     block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select date" />
-                        </div>
-
-                        <div className="relative max-w-sm">
-                            <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Time</label>
-                            <input {...register("time")} type="time" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 
-                    block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select date" />
-                        </div>
-
                     </div>
 
-                    <div className='mb-4'>
-                        <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
-                        <input {...register("description")} name="description" id="description" className="h-20 bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 
+                </div>
+
+                <div className='mb-4'>
+                    <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
+                    <input {...register("description")} name="description" id="description" className="h-20 bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 
                         dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Give your friends a brief summary of what's going on at the event" />
-                    </div>
+                </div>
 
-                    <div className='mb-6'>
-                        <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Address</label>
-                        <input {...register("address")} name="address" id="address" className="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 
+                <div className='mb-6'>
+                    <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Address</label>
+                    <input {...register("address")} name="address" id="address" className="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 
                         dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="123 Parc Street" />
 
+                </div>
+
+                <div className='mb-2'>
+                    <div>
+                        <input {...register("urgent")} name="urgent" id="urgent" type="checkbox"></input>
+                        <label className='pl-2 font-normal'>Urgent</label>
                     </div>
+                </div>
 
-                    <div className='mb-2'>
-                        <div>
-                            <input {...register("urgent")} name="urgent" id="urgent" type="checkbox"></input>
-                            <label className='pl-2 font-normal'>Urgent</label>
-                        </div>
+                <div className='mb-2'>
+                    <div>
+                        <input type="checkbox"></input>
+                        <label className='pl-2 font-normal'>Reservations</label>
                     </div>
+                </div>
 
-                    <div className='mb-2'>
-                        <div>
-                            <input type="checkbox"></input>
-                            <label className='pl-2 font-normal'>Reservations</label>
-                        </div>
-                    </div>
+                <div className='flex justify-between mt-10'>
 
-                    <div className='flex justify-between mt-10'>
+                    <Link to={currentGroup != null && currentGroup.id ? `/group/${currentGroup!.id}/dashboard` : "/"} className='w-1/4 py-2 text-center bg-red-400 rounded-lg text-white'>Cancel</Link>
+                    <button type='submit' className='w-1/4 py-2 text-center bg-createButton rounded-lg text-white '>Create</button>
 
-                        <Link to={currentGroup != null && currentGroup.id ? `/group/${currentGroup!.id}/dashboard` : "/"} className='w-1/4 py-2 text-center bg-red-400 rounded-lg text-white'>Cancel</Link>
-                        <button type='submit' className='w-1/4 py-2 text-center bg-createButton rounded-lg text-white '>Create</button>
-
-                    </div>
-                </form>
-            </div>
+                </div>
+            </form>
         </div>
 
     )

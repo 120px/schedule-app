@@ -12,6 +12,7 @@ import { useCurrentGroup } from '../../../provider/CurrentGroupProvider'
 
 const Sidebar = () => {
     const { currentGroup } = useCurrentGroup();
+    console.log(currentGroup)
     // List - make a list of things like restos, or places to visit
 
     return (
@@ -39,7 +40,7 @@ const Sidebar = () => {
                         <Sidebar_Calendar/>
                         <Sidebar_Poll/>
                         <Sidebar_PastEvents/>
-                        {currentGroup?.id !== null ? <Sidebar_Members/> : null}
+                        {currentGroup && currentGroup?.id !== null ? <Sidebar_Members/> : null}
                             
                     </div>
                 </div>

@@ -23,12 +23,11 @@ const Dashboard_Header: React.FC<Dashboard_feedProps> = ({ currentUser }) => {
 
             <GroupSearchBar />
 
-            <div className='flex'>
-                {/* <span>Create a Post</span> */}
-
-                <Link className='w-full rounded-lg py-3 px-5 bg-createButton text-white' 
+            {/* <div className='flex'>
+                
+                <Link className='w-full rounded-lg py-2 px-4 bg-createButton text-white text-md' 
                 to={currentGroup != null && currentGroup.id != undefined ? `/group/${groupId}/createevent` : "/createevent"} state={{groups: currentUser?.groups}}>Create</Link>
-            </div>
+            </div> */}
         </div>
     )
 }

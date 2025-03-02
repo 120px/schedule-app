@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { db } from '../../../../firebase-config'
 import UpcomingEvent from './UpcomingEvent'
-import { doc, getDoc,  } from 'firebase/firestore'
+import { doc, getDoc, } from 'firebase/firestore'
 import { useParams } from 'react-router-dom'
 import GroupEvents from '../../../../models/Group/GroupEvents'
 import EventInfo from '../../../../models/Event/EventInfo'
@@ -51,7 +51,7 @@ const MyEvents = () => {
 
         const groupData = doc(db, "groups", groupId!);
         const groupDataSnap = await getDoc(groupData);
-        
+
 
         if (groupDataSnap.exists())
             return await groupDataSnap.data().events
@@ -81,7 +81,7 @@ const MyEvents = () => {
             <p className='text-xl font-bold text-center'>Upcoming Events</p>
             <div className='flex flex-row justify-around'>
                 {groupEvents ? (
-                    groupEvents.slice(0,3)!.map((groupEvent, index) => (
+                    groupEvents.slice(0, 3)!.map((groupEvent, index) => (
                         <UpcomingEvent groupEvent={groupEvent} key={index} />
                     ))
                 ) : (

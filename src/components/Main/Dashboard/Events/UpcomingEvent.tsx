@@ -41,9 +41,7 @@ const UpcomingEvent: React.FC<UpcomingEventProps> = ({ groupEvent }) => {
       <div className="px-8 py-4 sm:p-10 sm:pb-6">
         <div className="grid items-center justify-center w-full grid-cols-1 text-left">
           <div>
-            <h2
-              className="text-lg font-medium tracking-tighter lg:text-3xl"
-            >
+            <h2 className="text-lg font-medium tracking-tighter lg:text-3xl">
               {groupEvent.name}
             </h2>
             <div className="mt-2 text-lg text-gray-500 text-center">
