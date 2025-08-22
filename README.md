@@ -1,3 +1,6 @@
+# What is this?
+An app that can be used by friends to schedule activities together. 
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
