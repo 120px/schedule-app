@@ -61,10 +61,14 @@ const MyGroups = () => {
     // show the description
 
     return (
+        <div className='flex flex-col w-full mt-4 px-6'>
 
-        <div className='flex flex-col w-full mt-4'>
             <div className='mx-auto flex w-full justify-center gap-10'>
-                <form className="max-w-md w-64">
+                <form className="w-full">
+                    <div className='flex justify-between pb-4'>
+                        <p className='text-xl'>My Groups</p>
+                        <Link className='rounded-lg py-1 px-3 bg-createButton text-white' to={"/creategroup"}>+ Create new Group</Link>
+                    </div>
                     <label className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
                     <div className="relative w-full">
                         <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
@@ -76,8 +80,6 @@ const MyGroups = () => {
 
                     </div>
                 </form>
-
-            <Link className='rounded-lg py-1 px-3 bg-createButton text-white' to={"/creategroup"}>Create a Group</Link>
 
             </div>
             <>
