@@ -15,10 +15,9 @@ const Right_Sidebar = () => {
     }
 
     return (
-        <div className="basis-1/6 flex flex-col items-center justify-between pt-8">
+        <div className="h-full p-6 overflow-y-auto">
             <MyEvents/>
         </div>
-
     )
 }
 

@@ -51,27 +51,55 @@ const GroupMembers = () => {
     }
 
     return (
-        <div className="mx-auto w-3/4">
+        <div className="flex flex-1 justify-center py-10 px-4 w-full">
             <InviteGroupMember groupInfo={groupInfo} isOpen={isModalOpen} onClose={closeModal}></InviteGroupMember>
-
-            <div className="p-4 max-w-md bg-white rounded-lg border shadow-md sm:p-8 dark:bg-gray-800 dark:border-gray-700 mx-auto">
-                <div className='flex flex-row justify-between'>
-                    <div className="flex justify-between items-center mb-4 flex-col">
-                        <span className="text-2xl font-bold leading-none text-gray-900 dark:text-white">{groupInfo?.groupData.name !== undefined ? groupInfo?.groupData.name : "Group name's"}</span>
-                        <span className="text-lg font-bold leading-none text-gray-900 dark:text-white">Members</span>
+            
+            <div className="layout-content-container flex flex-col max-w-[800px] flex-1">
+                {/* Header */}
+                <div className="flex flex-wrap items-end justify-between gap-4 p-4 mb-4">
+                    <div className="flex min-w-72 flex-col gap-2">
+                        <div className="flex items-center gap-2 text-gray-500 dark:text-gray-400 text-sm mb-1">
+                            <span>Groups</span>
+                            <span>/</span>
+                            <span>{groupInfo?.groupData.name}</span>
+                        </div>
+                        <h1 className="text-gray-900 dark:text-white text-4xl font-black leading-tight tracking-[-0.033em]">
+                            {groupInfo?.groupData.name !== undefined ? groupInfo?.groupData.name : "Group"}
+                        </h1>
+                        <p className="text-gray-500 dark:text-gray-400 text-base font-normal leading-normal">{groupmembers ? groupmembers.length : 0} Members</p>
                     </div>
-                    <div>
-                        <button onClick={openModal} type="button" className="bg-createButton text-white
-                        px-3 py-2 rounded-md">Invite Member</button>
+                    <button onClick={openModal} className="flex min-w-[140px] cursor-pointer items-center justify-center gap-2 overflow-hidden rounded-lg h-12 px-6 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em] hover:bg-opacity-90 transition-all shadow-sm">
+                        <span className="material-symbols-outlined text-xl">person_add</span>
+                        <span className="truncate">Invite Member</span>
+                    </button>
+                </div>
+
+                {/* Tabs (Static for now) */}
+                <div className="pb-3 px-4">
+                    <div className="flex border-b border-gray-200 dark:border-gray-800 gap-8">
+                        <a className="flex flex-col items-center justify-center border-b-[3px] border-b-primary text-gray-900 dark:text-white pb-[13px] pt-4" href="#">
+                            <p className="text-sm font-bold leading-normal tracking-[0.015em]">All Members</p>
+                        </a>
                     </div>
                 </div>
 
-                <div className="flow-root">
-                    <ul role="list" className="divide-y divide-gray-200 dark:divide-gray-700">
-                        {groupmembers !== undefined ? groupmembers!.map((member, index) =>
-                            <GroupMemberDetails key={index} member={member} />
-                        ) : "No data"}
-                    </ul>
+                {/* Search Bar */}
+                <div className="px-4 py-4">
+                    <label className="flex flex-col min-w-40 h-12 w-full">
+                        <div className="flex w-full flex-1 items-stretch rounded-xl h-full border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-800 shadow-sm">
+                            <div className="text-gray-400 flex items-center justify-center pl-4">
+                                <span className="material-symbols-outlined">person_search</span>
+                            </div>
+                            <input className="form-input flex w-full min-0 flex-1 border-none bg-transparent focus:ring-0 h-full placeholder:text-gray-400 px-4 pl-2 text-base font-normal" placeholder="Find a member..." />
+                        </div>
+                    </label>
+                </div>
+
+                {/* Member List */}
+                <div className="flex flex-col gap-1 px-2">
+                    {groupmembers !== undefined ? groupmembers!.map((member, index) =>
+                        <GroupMemberDetails key={index} member={member} />
+                    ) : <p className="px-4">No members found.</p>}
                 </div>
             </div>
         </div>

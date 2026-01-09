@@ -123,10 +123,10 @@ const Dashboard_feed: React.FC<Dashboard_feedProps> = ({ currentUser }) => {
     }
 
     return (
-        <div className='w-3/4 mx-auto'>
+        <div className='space-y-6'>
             {events ? events.map((eventInfo, index) => (
                 <Dashboard_event key={index} eventInfo={eventInfo} ></Dashboard_event>
-            )) : null}
+            )) : <p>No events found.</p>}
         </div>
     )
 }

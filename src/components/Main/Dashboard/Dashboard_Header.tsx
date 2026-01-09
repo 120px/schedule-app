@@ -17,17 +17,19 @@ const Dashboard_Header: React.FC<Dashboard_feedProps> = ({ currentUser }) => {
     }, [])
 
     return (
-        <div className='flex justify-between w-full py-8 align-middle'>
-            {currentGroup?.id !== null && currentGroup !== null ? <span className='text-2xl self-center font-bold'>{currentGroup?.name}</span> :
-                <span className='text-2xl self-center font-bold'>My Dashboard</span>}
-
-            <GroupSearchBar />
-
-            {/* <div className='flex'>
-                
-                <Link className='w-full rounded-lg py-2 px-4 bg-createButton text-white text-md' 
-                to={currentGroup != null && currentGroup.id != undefined ? `/group/${groupId}/createevent` : "/createevent"} state={{groups: currentUser?.groups}}>Create</Link>
-            </div> */}
+        <div className="flex justify-between items-end mb-8">
+            <div>
+                <h2 className="text-3xl font-black tracking-tight text-[#181310] dark:text-white">
+                    {currentGroup?.id !== null && currentGroup !== null ? currentGroup.name : `Welcome back, ${currentUser?.data.username || 'Friend'}!`}
+                </h2>
+                <p className="text-[#8d6d5e] dark:text-white/60 mt-1">You have events coming up this week.</p>
+            </div>
+            <div className="flex gap-3">
+                <div className="relative">
+                    <span className="material-symbols-outlined p-2 text-slate-sidebar dark:text-white bg-white dark:bg-white/5 rounded-full border border-gray-200 dark:border-white/10 cursor-pointer">notifications</span>
+                    <div className="absolute top-0 right-0 size-3 bg-primary rounded-full border-2 border-white dark:border-background-dark"></div>
+                </div>
+            </div>
         </div>
     )
 }

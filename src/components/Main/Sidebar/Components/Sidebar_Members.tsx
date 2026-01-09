@@ -1,19 +1,24 @@
-import { faUsers } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { NavLink, useParams } from 'react-router-dom'
 
 const Sidebar_Members = () => {
 
     const { groupId } = useParams()
 
     return (
-        <Link to={`/group/${groupId}/groupmembers`} className='flex flex-row rounded-md px-1 py-1 hover:drop-shadow-md hover:bg-sidebarHover'>
-            <div className=''>
-                <FontAwesomeIcon icon={faUsers} />
-            </div>
-            <div className='pl-1'>Members</div>
-        </Link>
+        <NavLink 
+            to={`/group/${groupId}/groupmembers`} 
+            className={({ isActive }) => 
+                `flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${
+                    isActive 
+                    ? 'bg-white/10 text-white shadow-sm font-bold' 
+                    : 'text-white/70 hover:bg-white/5 hover:text-white font-semibold'
+                }`
+            }
+        >
+            <span className="material-symbols-outlined text-[24px]">groups</span>
+            <span className="text-sm">Members</span>
+        </NavLink>
     )
 }
 

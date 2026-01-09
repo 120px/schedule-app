@@ -63,79 +63,88 @@ const CreateEvent = () => {
     }
 
     return (
-        <div className='mx-auto mt-10'>
-
-            <form onSubmit={handleSubmit((data) => {
-
-                handleFormSubmit(data)
-            })}>
-                <div className='mb-8 '>
-                    <h3 className='text-3xl font-semibold mb-4'>Create an event</h3>
-                    <span className='text-slate-500'>Create a new event & notify everyone in your group</span>
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 flex items-center justify-center p-4">
+            <div className="bg-white dark:bg-[#1f1612] w-full max-w-[640px] rounded-xl shadow-2xl z-50 overflow-hidden flex flex-col max-h-[90vh]">
+                {/* Modal Header */}
+                <div className="flex items-center justify-between p-6 border-b border-[#f5f1f0] dark:border-white/10">
+                    <h2 className="text-[#181310] dark:text-white tracking-tight text-[24px] font-bold leading-tight">Create New Event</h2>
+                    <Link to={currentGroup != null && currentGroup.id ? `/group/${currentGroup!.id}/dashboard` : "/"} className="text-gray-400 hover:text-gray-600 dark:hover:text-white transition-colors">
+                        <span className="material-symbols-outlined">close</span>
+                    </Link>
                 </div>
 
-                {currentGroup?.id !== null ? null : <DropdownMenu
-                    setSelectedGroup={setSelectedGroup}
-                    selectedGroup={selectedGroup}
-                    currentUsersGroups={currentUsersGroups} />
-                }
+                {/* Modal Body (Scrollable) */}
+                <form onSubmit={handleSubmit((data) => { handleFormSubmit(data) })} className="overflow-y-auto p-6 space-y-6">
 
-                <div className='mb-4'>
-                    <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Event Name</label>
-                    <input {...register("name")} name="name" id="name" className=" bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 
-                        dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="" />
-                </div>
+                    {/* Group Selection */}
+                    {(!currentGroup?.id) && (
+                         <DropdownMenu
+                            setSelectedGroup={setSelectedGroup}
+                            selectedGroup={selectedGroup}
+                            currentUsersGroups={currentUsersGroups} />
+                    )}
 
-                <div className='flex flex-row justify-between mb-4'>
-                    <div className="relative max-w-sm">
-
-                        <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Date</label>
-                        <input {...register("date_for")} type="date" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 
-                    block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select date" />
+                    {/* Event Title Input */}
+                    <div className="flex flex-col gap-2">
+                        <label className="text-[#181310] dark:text-white text-base font-medium leading-normal">Event Title</label>
+                        <input {...register("name")} className="form-input flex w-full rounded-lg text-[#181310] dark:text-white focus:outline-0 focus:ring-2 focus:ring-primary border border-[#e7deda] dark:border-white/10 bg-white dark:bg-white/5 h-14 placeholder:text-[#8d6d5e] p-[15px] text-base font-normal leading-normal" placeholder="e.g. Board Game Night" type="text"/>
                     </div>
 
-                    <div className="relative max-w-sm">
-                        <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Time</label>
-                        <input {...register("time")} type="time" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 
-                    block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Select date" />
+                    {/* Date & Time Row */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div className="flex flex-col gap-2">
+                            <label className="text-[#181310] dark:text-white text-base font-medium leading-normal">Date</label>
+                            <div className="relative">
+                                <input {...register("date_for")} className="form-input flex w-full rounded-lg text-[#181310] dark:text-white border border-[#e7deda] dark:border-white/10 bg-white dark:bg-white/5 h-14 p-[15px] pr-10" type="date" />
+                                <span className="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-[#8d6d5e]">calendar_today</span>
+                            </div>
+                        </div>
+                        <div className="flex flex-col gap-2">
+                            <label className="text-[#181310] dark:text-white text-base font-medium leading-normal">Time</label>
+                            <div className="relative">
+                                <input {...register("time")} className="form-input flex w-full rounded-lg text-[#181310] dark:text-white border border-[#e7deda] dark:border-white/10 bg-white dark:bg-white/5 h-14 p-[15px] pr-10" type="time" />
+                                <span className="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-[#8d6d5e]">schedule</span>
+                            </div>
+                        </div>
                     </div>
 
-                </div>
-
-                <div className='mb-4'>
-                    <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
-                    <input {...register("description")} name="description" id="description" className="h-20 bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 
-                        dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Give your friends a brief summary of what's going on at the event" />
-                </div>
-
-                <div className='mb-6'>
-                    <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Address</label>
-                    <input {...register("address")} name="address" id="address" className="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 
-                        dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="123 Parc Street" />
-
-                </div>
-
-                <div className='mb-2'>
-                    <div>
-                        <input {...register("urgent")} name="urgent" id="urgent" type="checkbox"></input>
-                        <label className='pl-2 font-normal'>Urgent</label>
+                    {/* Location Input */}
+                    <div className="flex flex-col gap-2">
+                        <label className="text-[#181310] dark:text-white text-base font-medium leading-normal">Location</label>
+                        <div className="flex w-full items-stretch rounded-lg group">
+                            <input {...register("address")} className="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg rounded-r-none border-r-0 text-[#181310] dark:text-white focus:outline-0 focus:ring-0 border border-[#e7deda] dark:border-white/10 bg-white dark:bg-white/5 h-14 placeholder:text-[#8d6d5e] p-[15px] text-base font-normal" placeholder="Add a place or virtual link"/>
+                            <div className="text-[#8d6d5e] flex border border-[#e7deda] dark:border-white/10 bg-white dark:bg-white/5 items-center justify-center pr-[15px] rounded-r-lg">
+                                <span className="material-symbols-outlined">map</span>
+                            </div>
+                        </div>
                     </div>
-                </div>
 
-                <div className='mb-2'>
-                    <div>
-                        <input type="checkbox"></input>
-                        <label className='pl-2 font-normal'>Reservations</label>
+                    {/* Description Textarea */}
+                    <div className="flex flex-col gap-2">
+                        <label className="text-[#181310] dark:text-white text-base font-medium leading-normal">Description</label>
+                        <textarea {...register("description")} className="form-textarea w-full rounded-lg text-[#181310] dark:text-white focus:outline-0 focus:ring-2 focus:ring-primary border border-[#e7deda] dark:border-white/10 bg-white dark:bg-white/5 min-h-[100px] placeholder:text-[#8d6d5e] p-[15px] text-base font-normal leading-normal" placeholder="Add details for your friends..."></textarea>
                     </div>
+
+                    {/* Extra Options */}
+                    <div className="flex items-center justify-between py-2">
+                         <div className="flex items-center gap-3">
+                             <input {...register("urgent")} type="checkbox" className="w-5 h-5 rounded text-primary focus:ring-primary border-gray-300" />
+                             <span className="text-[#181310] dark:text-white font-medium">Urgent</span>
+                         </div>
+                    </div>
+                </form>
+
+                 {/* Modal Footer Actions */}
+                 <div className="p-6 border-t border-[#f5f1f0] dark:border-white/10 flex items-center justify-end gap-3 bg-[#fdfdfd] dark:bg-white/[0.02]">
+                    <Link to={currentGroup != null && currentGroup.id ? `/group/${currentGroup!.id}/dashboard` : "/"} className="px-6 h-12 flex items-center justify-center rounded-lg text-sm font-bold text-[#181310] dark:text-white bg-[#f5f1f0] dark:bg-white/10 hover:bg-[#ebe5e3] dark:hover:bg-white/20 transition-colors">
+                        Cancel
+                    </Link>
+                    <button onClick={handleSubmit((data) => { handleFormSubmit(data) })} className="px-8 h-12 rounded-lg text-sm font-bold text-white bg-primary hover:brightness-110 shadow-lg shadow-primary/20 transition-all flex items-center gap-2">
+                        <span className="material-symbols-outlined text-sm">event_available</span>
+                        Create Event
+                    </button>
                 </div>
-
-                <div className='flex justify-between mt-10'>
-
-                    <Link to={currentGroup != null && currentGroup.id ? `/group/${currentGroup!.id}/dashboard` : "/"} className='w-1/4 py-2 text-center bg-red-400 rounded-lg text-white'>Cancel</Link>
-                    <button type='submit' className='w-1/4 py-2 text-center bg-createButton rounded-lg text-white '>Create</button>
-
-                </div>
-            </form>
+            </div>
         </div>
 
     )

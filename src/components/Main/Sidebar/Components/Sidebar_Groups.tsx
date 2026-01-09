@@ -1,16 +1,21 @@
-import { faUsersRectangle } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 const Sidebar_Groups = () => {
     return (
-        <Link to={"/mygroups"} className='flex flex-row hover:bg-sidebarHover px-1 py-1 rounded-md hover:drop-shadow-md'>
-            <div className=''>
-                <FontAwesomeIcon icon={faUsersRectangle} />
-            </div>
-            <div className='pl-1'>My Groups</div>
-        </Link>
+        <NavLink 
+            to={"/mygroups"} 
+            className={({ isActive }) => 
+                `flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${
+                    isActive 
+                    ? 'bg-white/10 text-white shadow-sm font-bold' 
+                    : 'text-white/70 hover:bg-white/5 hover:text-white font-semibold'
+                }`
+            }
+        >
+            <span className="material-symbols-outlined text-[24px]">group</span>
+            <span className="text-sm">My Groups</span>
+        </NavLink>
     )
 }
 

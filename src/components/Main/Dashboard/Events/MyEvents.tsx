@@ -78,14 +78,14 @@ const MyEvents = () => {
 
     return (
         <div className='w-full'>
-            <p className='text-xl font-bold text-center'>Upcoming Events</p>
-            <div className='flex flex-row justify-around'>
+            <h4 className='text-lg font-bold mb-6 text-[#181310] dark:text-white'>Upcoming Events</h4>
+            <div className='space-y-4'>
                 {groupEvents ? (
                     groupEvents.slice(0, 3)!.map((groupEvent, index) => (
                         <UpcomingEvent groupEvent={groupEvent} key={index} />
                     ))
                 ) : (
-                    <p>No upcoming events found.</p>
+                    <p className="text-sm text-gray-500">No upcoming events found.</p>
                 )}
             </div>
         </div>

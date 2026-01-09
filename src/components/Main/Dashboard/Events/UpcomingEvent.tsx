@@ -36,35 +36,21 @@ const UpcomingEvent: React.FC<UpcomingEventProps> = ({ groupEvent }) => {
   }
 
   return (
-
-    <div className="flex flex-col bg-white rounded-3xl shadow-xl">
-      <div className="px-8 py-4 sm:p-10 sm:pb-6">
-        <div className="grid items-center justify-center w-full grid-cols-1 text-left">
-          <div>
-            <h2 className="text-lg font-medium tracking-tighter lg:text-3xl">
-              {groupEvent.name}
-            </h2>
-            <div className="mt-2 text-lg text-gray-500 text-center">
-              <span>{dateSecondsToDate(groupEvent.date_for).day}. </span>
-              <span>{dateSecondsToDate(groupEvent.date_for).time}</span>
-            </div>
-            <div className="text-md text-gray-500 text-center">
-              <span>{dateSecondsToDate(groupEvent.date_for).month}</span>
-              {/* <span>{dateSecondsToDate(groupEvent.data.date_for).year}</span> */}
-            </div>
-          </div>
-          <div className="mt-6 text-center">
-            <p>
-              <span className="text-base font-medium text-gray-500">Accepted: {groupEvent.members.length} </span>
-            </p>
+    <div className="p-4 rounded-xl border border-gray-100 dark:border-white/5 bg-background-light/50 dark:bg-white/5 hover:bg-white dark:hover:bg-white/10 transition-colors cursor-pointer group">
+      <div className="flex gap-3">
+        <div className="flex flex-col items-center justify-center bg-primary text-slate-sidebar font-black size-12 rounded-lg shrink-0">
+          <span className="text-[10px] leading-none uppercase">{dateSecondsToDate(groupEvent.date_for).month.substring(0, 3)}</span>
+          <span className="text-lg leading-none">{dateSecondsToDate(groupEvent.date_for).date}</span>
+        </div>
+        <div>
+          <p className="text-sm font-bold group-hover:text-primary transition-colors">{groupEvent.name}</p>
+          <p className="text-xs text-[#8d6d5e] dark:text-white/50">{dateSecondsToDate(groupEvent.date_for).day} • {groupEvent.time}</p>
+          <div className="mt-2 flex -space-x-2 overflow-hidden">
+             {/* Avatars would go here */}
           </div>
         </div>
       </div>
     </div>
-
-
-
-
   )
 }
 

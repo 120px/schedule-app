@@ -16,36 +16,66 @@ const InviteGroupMember: React.FC<ModalProps> = ({ isOpen, onClose, groupInfo })
     if (!isOpen) return null;
 
     return (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
+            <div className="relative w-full max-w-[480px] bg-white dark:bg-[#1A1A1A] rounded-xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
 
-        <div className="fixed inset-0 bg-black bg-opacity-50 z-40 flex justify-center items-center">
-            <div className='rounded-lg bg-white mx-auto z-50 max-w-xl h-fit px-12 py-6 dark:bg-gray-700'>
-
-                <div className='mb-8 '>
-                    <h3 className='text-3xl font-semibold mb-4'>Invite a member</h3>
+                {/* Header */}
+                <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100 dark:border-gray-800">
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-white leading-tight tracking-[-0.015em]">Invite Member</h3>
+                    <button onClick={onClose} className="p-2 -mr-2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors rounded-full hover:bg-gray-100 dark:hover:bg-gray-800">
+                        <span className="material-symbols-outlined text-xl">close</span>
+                    </button>
                 </div>
 
-                <div>
-                    <h1>Invite link</h1>
-                    <input type="text" id="first_name" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
-                    value={groupInfo.groupData.inviteURL} />
+                <div className="p-6 flex flex-col gap-6">
+                    <div className="flex flex-col gap-4">
+                        <div className="flex flex-col gap-1.5">
+                            <label className="text-sm font-bold text-gray-900 dark:text-white">Invite Link</label>
+                            <div className="flex gap-2">
+                                <div className="relative flex-1">
+                                    <input
+                                        type="text"
+                                        readOnly
+                                        className="w-full h-12 px-4 rounded-xl border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all font-medium truncate"
+                                        value={groupInfo.groupData.inviteURL || "https://example.com/invite/..."}
+                                    />
+                                </div>
+                                <button
+                                    onClick={() => navigator.clipboard.writeText(groupInfo.groupData.inviteURL || "")}
+                                    className="h-12 w-12 flex items-center justify-center rounded-xl bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+                                    title="Copy Link"
+                                >
+                                    <span className="material-symbols-outlined">content_copy</span>
+                                </button>
+                            </div>
+                        </div>
 
-                    <h1>Password</h1>
-                </div>
-
-                <div className='flex justify-between mt-10'>
-
-                    <div className='w-4/12 mx-auto'>
-                        <button onClick={onClose} className='bg-white-full rounded-md text-gray-500 py-3'>Cancel</button>
+                        {/* Placeholder for Password or other invite info if needed */}
+                        {/* 
+                         <div className="flex flex-col gap-1.5">
+                            <label className="text-sm font-bold text-gray-900 dark:text-white">Password</label>
+                             <input ... />
+                         </div> 
+                         */}
                     </div>
-                    <div className='w-4/12'>
-                        <button type='submit' className='bg-orange-400 w-full rounded-lg text-white py-3 hover:bg-orange-600'>Send</button>
+
+                    <div className="p-4 rounded-xl bg-orange-50 dark:bg-orange-500/10 border border-orange-100 dark:border-orange-500/20 flex gap-3 text-orange-800 dark:text-orange-200">
+                        <span className="material-symbols-outlined text-xl mt-0.5">info</span>
+                        <p className="text-sm leading-relaxed">Share this link with people you want to invite to <strong>{groupInfo.groupData.name}</strong>. Anyone with the link can request to join.</p>
+                    </div>
+
+                    <div className="flex gap-3 pt-2">
+                        <button onClick={onClose} className="flex-1 h-12 flex items-center justify-center rounded-xl bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white text-base font-bold hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+                            Cancel
+                        </button>
+                        <button onClick={onClose} className="flex-1 h-12 flex items-center justify-center rounded-xl bg-[#FF9966] text-white text-base font-bold hover:bg-[#ff8547] transition-all shadow-lg shadow-orange-500/20">
+                            Done
+                        </button>
                     </div>
 
                 </div>
-
             </div>
         </div>
-
     )
 }
 

@@ -4,7 +4,6 @@ import QuickLinks from './QuickLinks/QuickLinks'
 import { auth, db } from '../../../firebase-config';
 import { getDocs, collection, getDoc, doc } from 'firebase/firestore';
 import Right_Sidebar from './RightSidebar/Right_Sidebar';
-import Create from './Create/Create';
 import Dashboard_Header from './Dashboard_Header';
 import Dashboard_feed from './Dashboard_feed';
 import { User } from '../../../models/User/User';
@@ -36,7 +35,7 @@ const Dashboard = () => {
     }
 
     return (
-        <div className='flex flex-col mx-auto w-4/5'>
+        <div className='p-8 w-full'>
             <Dashboard_Header currentUser={currentUser}/>
             <Dashboard_feed currentUser={currentUser}></Dashboard_feed>
 

@@ -61,36 +61,47 @@ const MyGroups = () => {
     // show the description
 
     return (
-        <div className='flex flex-col w-full mt-4 px-6'>
-
-            <div className='mx-auto flex w-full justify-center gap-10'>
-                <form className="w-full">
-                    <div className='flex justify-between pb-4'>
-                        <p className='text-xl'>My Groups</p>
-                        <Link className='rounded-lg py-1 px-3 bg-createButton text-white' to={"/creategroup"}>+ Create new Group</Link>
-                    </div>
-                    <label className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
-                    <div className="relative w-full">
-                        <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                            <svg className="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
-                            </svg>
-                        </div>
-                        <input type="search" id="default-search" className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search for a group" required />
-
-                    </div>
-                </form>
-
+        <div className="max-w-7xl mx-auto px-8 py-10 w-full">
+            {/* Page Heading */}
+            <div className="flex flex-wrap justify-between items-end gap-4 mb-8">
+                <div className="flex flex-col gap-2">
+                    <h2 className="text-[#181310] dark:text-white text-4xl font-black leading-tight tracking-tight">My Groups</h2>
+                    <p className="text-[#8d6d5e] text-base font-normal">You are managing {userGroups ? userGroups.length : 0} groups.</p>
+                </div>
+                <Link to={"/creategroup"} className="flex items-center gap-2 cursor-pointer rounded-lg h-12 px-6 bg-primary text-white text-sm font-bold transition-transform hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-primary/20">
+                    <span className="material-symbols-outlined">add_circle</span>
+                    <span>Create Group</span>
+                </Link>
             </div>
+
+            {/* Search/Filter Bar */}
+            <div className="mb-8">
+                <div className="relative max-w-md">
+                    <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                        <span className="material-symbols-outlined text-[#8d6d5e]">search</span>
+                    </div>
+                    <input className="block w-full pl-11 pr-4 py-3 bg-white dark:bg-gray-800 border-none rounded-xl text-[#181310] dark:text-white placeholder:text-[#8d6d5e] shadow-sm focus:ring-2 focus:ring-primary/50 transition-all text-sm" placeholder="Search groups by name or keyword..." type="text"/>
+                </div>
+            </div>
+
+            {/* Groups Grid */}
             <>
                 {userGroups !== undefined && userGroups.length > 0 ?
-                    <div className='mx-auto grid grid-cols-3 gap-6 h-max mt-12 w-4/5'>
+                    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
                         {userGroups!.map(group =>
-                            <GroupTile key={group.groupData.id} group={group}></GroupTile>)}
+                            <GroupTile key={group.groupData.id} group={group}></GroupTile>
+                        )}
+                         
+                        {/* Add New Group Card (as displayed in design) */}
+                         <Link to="/creategroup" className="flex flex-col items-center justify-center rounded-xl border-2 border-dashed border-gray-200 dark:border-gray-700 bg-white/50 dark:bg-gray-800/30 p-10 hover:border-primary/50 hover:bg-primary/5 transition-all group min-h-[350px]">
+                            <div className="size-16 rounded-full bg-gray-50 dark:bg-gray-700 flex items-center justify-center mb-4 group-hover:bg-primary group-hover:text-white transition-colors">
+                                <span className="material-symbols-outlined text-3xl">add</span>
+                            </div>
+                            <p className="text-lg font-bold">Add New Group</p>
+                        </Link>
                     </div>
 
                     : <div className='text-center pt-6'> You have not joined any groups yet. Try making one! </div>}
-
             </>
         </div>
     )
