@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
 import { NavLink, useParams } from 'react-router-dom'
-import { useCurrentGroup } from '../../../../provider/CurrentGroupProvider';
+import { useCurrentGroup } from '../../../provider/CurrentGroupProvider';
 
-const DashboardRedirect = () => {
+const Sidebar_Dashboard = () => {
 
     const { groupId } = useParams();
     const { setCurrentGroup } = useCurrentGroup();
@@ -27,4 +27,4 @@ const DashboardRedirect = () => {
     )
 }
 
-export default DashboardRedirect
+export default Sidebar_Dashboard

@@ -4,12 +4,12 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { createBrowserRouter, RouterProvider, Navigate } from 'react-router-dom';
-import Dashboard from './components/Main/Dashboard/Dashboard';
-import CreateGroup from './components/Main/Dashboard/Groups/CreateGroup';
-import MyGroups from './components/Main/Dashboard/Groups/MyGroups';
-import GroupMembers from './components/Main/Dashboard/GroupMembers/GroupMembers';
-import CreateEvent from './components/Main/Dashboard/Events/CreateEvent';
-import Profile from './components/Main/Dashboard/Profile/Profile';
+import Dashboard from './components/Dashboard/Dashboard';
+import CreateGroup from './components/Dashboard/Groups/CreateGroup';
+import MyGroups from './components/Dashboard/Groups/MyGroups';
+import GroupMembers from './components/Dashboard/GroupMembers/GroupMembers';
+import CreateEvent from './components/Dashboard/Events/CreateEvent';
+import Profile from './components/Dashboard/Profile/Profile';
 import { CurrentGroupProvider } from './provider/CurrentGroupProvider';
 
 const router = createBrowserRouter([

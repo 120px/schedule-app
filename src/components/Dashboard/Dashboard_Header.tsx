@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import GroupSearchBar from './GroupSearchBar/GroupSearchBar'
-import { useCurrentGroup } from '../../../provider/CurrentGroupProvider';
-import { User } from '../../../models/User/User';
+import { useCurrentGroup } from '../../provider/CurrentGroupProvider';
+import { User } from '../../models/User/User';
 
 interface Dashboard_feedProps {
     currentUser: User | undefined

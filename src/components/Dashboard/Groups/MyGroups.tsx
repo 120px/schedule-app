@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import GroupTile from './GroupTile'
-import { auth, db } from '../../../../firebase-config'
+import { auth, db } from '../../../firebase-config';
 import { collection, doc, getDoc, query, where } from 'firebase/firestore'
-import GroupData from '../../../../models/Group/GroupData'
+import GroupData from '../../../models/Group/GroupData';
 import { Link } from 'react-router-dom'
 
 // https://dribbble.com/shots/5257657-Group-List-UI-Design
@@ -23,7 +23,6 @@ const MyGroups = () => {
         const userDataSnap = await getDoc(userData);
 
         if (userDataSnap.exists()) {
-            // Access a specific field, for example, 'username'
             const groups = userDataSnap.data().groups;
             if (groups)
                 getGroupData(groups)
@@ -39,10 +38,6 @@ const MyGroups = () => {
                 const docRef = doc(db, "groups", group.id);
                 const docSnap = await getDoc(docRef);
                 const data = docSnap.data()
-
-                if (data) {
-                    data.groupData.id = group.id;
-                }
 
                 return data;
             });
@@ -89,7 +84,7 @@ const MyGroups = () => {
                 {userGroups !== undefined && userGroups.length > 0 ?
                     <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
                         {userGroups!.map(group =>
-                            <GroupTile key={group.groupData.id} group={group}></GroupTile>
+                            <GroupTile key={group.id} group={group}></GroupTile>
                         )}
                          
                         {/* Add New Group Card (as displayed in design) */}

@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import { auth, db } from '../../../firebase-config';
+import { auth, db } from '../../firebase-config';
 import { collection, doc, getDoc, getDocs, limit, orderBy, query } from 'firebase/firestore';
 import { useParams } from 'react-router-dom';
-import EventInfo from '../../../models/Event/EventInfo';
+import EventInfo from '../../models/Event/EventInfo';
 import Dashboard_event from './Dashboard_event';
-import { User } from '../../../models/User/User';
-import GroupEvents from '../../../models/Group/GroupEvents';
-import { CurrentGroupProvider } from '../../../provider/CurrentGroupProvider';
+import { User } from '../../models/User/User';
+import GroupEvents from '../../models/Group/GroupEvents';
+import { CurrentGroupProvider } from '../../provider/CurrentGroupProvider';
 
 interface Dashboard_feedProps {
     currentUser: User | undefined
@@ -33,14 +33,13 @@ const Dashboard_feed: React.FC<Dashboard_feedProps> = ({ currentUser }) => {
     }, [currentUser])
 
     const fetchEventIds = async () => {
-        console.log("fetchEventIds")
         // if user is looking at a specific group, we will get the 10 most recent events OF THAT GROUP
         // if user is NOT looking at a group, we will get the 10 most recent events of ALL their groups
         if (groupId == null || groupId == undefined) {
             if (currentUser !== undefined) {
                 try {
                     const eventsData = await Promise.all(
-                        currentUser.groups.map(async (group) => {
+                        currentUser.groups.map(async (group: { id: string; name: string }) => {
                             const groupDocRef = await doc(db, "groups", group.id);
                             const docSnap = await getDoc(groupDocRef);
                             if (docSnap.exists() && docSnap.data().events !== undefined) {
@@ -52,7 +51,7 @@ const Dashboard_feed: React.FC<Dashboard_feedProps> = ({ currentUser }) => {
                             }
                         })
                     );
-                    const validEvents = eventsData.filter(data => data !== null).flat();
+                    const validEvents = eventsData.filter((data: any) => data !== null).flat();
                     return await validEvents;
                 } catch (error) {
                     console.error("Error getting group documents:", error);
@@ -125,7 +124,7 @@ const Dashboard_feed: React.FC<Dashboard_feedProps> = ({ currentUser }) => {
     return (
         <div className='space-y-6'>
             {events ? events.map((eventInfo, index) => (
-                <Dashboard_event key={index} eventInfo={eventInfo} ></Dashboard_event>
+                <Dashboard_event key={index} eventInfo={eventInfo} index={index} ></Dashboard_event>
             )) : <p>No events found.</p>}
         </div>
     )

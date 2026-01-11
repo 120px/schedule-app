@@ -1,6 +1,6 @@
 import React from 'react'
-import GroupData from '../../../../models/Group/GroupData'
-import { useCurrentGroup } from "../../../../provider/CurrentGroupProvider"
+import GroupData from '../../../models/Group/GroupData';
+import { useCurrentGroup } from '../../../provider/CurrentGroupProvider';
 import { Link } from 'react-router-dom'
 
 interface GroupTileProps {

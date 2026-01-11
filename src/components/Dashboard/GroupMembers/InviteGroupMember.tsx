@@ -1,8 +1,8 @@
 import { doc } from 'firebase/firestore';
 import React, { useEffect } from 'react'
-import { db } from '../../../../firebase-config';
+import { db } from '../../../firebase-config';
 import { useParams } from 'react-router-dom';
-import GroupData from '../../../../models/Group/GroupData';
+import GroupData from '../../../models/Group/GroupData';
 
 interface ModalProps {
     isOpen: boolean;

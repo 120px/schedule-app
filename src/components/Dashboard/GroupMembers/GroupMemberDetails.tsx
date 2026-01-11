@@ -1,5 +1,5 @@
 import React from 'react'
-import { User } from '../../../../models/User/User'
+import { User } from '../../../models/User/User';
 
 interface GroupMemberDetails {
     member: User

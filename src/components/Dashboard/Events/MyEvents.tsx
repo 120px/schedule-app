@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react'
-import { db } from '../../../../firebase-config'
+import { db } from '../../../firebase-config';
 import UpcomingEvent from './UpcomingEvent'
 import { doc, getDoc, } from 'firebase/firestore'
 import { useParams } from 'react-router-dom'
-import GroupEvents from '../../../../models/Group/GroupEvents'
-import EventInfo from '../../../../models/Event/EventInfo'
+import GroupEvents from '../../../models/Group/GroupEvents';
+import EventInfo from '../../../models/Event/EventInfo';
 
 //https://dribbble.com/shots/15627005-Contentstack-CMS-UI-Updates-Content-Models
 //https://dribbble.com/shots/17227772-Add-new-course

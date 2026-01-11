@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react'
 import GroupMemberDetails from './GroupMemberDetails'
 import { useParams } from 'react-router-dom'
 import { doc, getDoc } from 'firebase/firestore'
-import { db } from '../../../../firebase-config'
-import GroupData from '../../../../models/Group/GroupData'
-import { User } from '../../../../models/User/User'
+import { db } from '../../../firebase-config';
+import GroupData from '../../../models/Group/GroupData';
+import { User } from '../../../models/User/User';
 import InviteGroupMember from './InviteGroupMember'
 
 const GroupMembers = () => {

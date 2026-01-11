@@ -1,10 +1,10 @@
-import CreateEventInfo from '../../../../models/Event/CreateEventInfo'
+import CreateEventInfo from '../../../models/Event/CreateEventInfo'
 import { addDoc, arrayUnion, collection, doc, setDoc, updateDoc } from "firebase/firestore";
-import { db } from '../../../../firebase-config';
-import { auth } from "../../../../firebase-config"
+import { db } from '../../../firebase-config';
+import { auth } from '../../../firebase-config';
 import { useForm } from 'react-hook-form';
 import { Link, useParams, useLocation } from 'react-router-dom';
-import { useCurrentGroup } from '../../../../provider/CurrentGroupProvider';
+import { useCurrentGroup } from '../../../provider/CurrentGroupProvider';
 import DropdownMenu from './DropdownMenu';
 import { useState } from 'react';
 

@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import MyEvents from './Events/MyEvents'
 import QuickLinks from './QuickLinks/QuickLinks'
-import { auth, db } from '../../../firebase-config';
+import { auth, db } from '../../firebase-config';
 import { getDocs, collection, getDoc, doc } from 'firebase/firestore';
 import Right_Sidebar from './RightSidebar/Right_Sidebar';
 import Dashboard_Header from './Dashboard_Header';
 import Dashboard_feed from './Dashboard_feed';
-import { User } from '../../../models/User/User';
-import { useCurrentGroup } from '../../../provider/CurrentGroupProvider';
+import { User } from '../../models/User/User';
+import { useCurrentGroup } from '../../provider/CurrentGroupProvider';
 
 //https://dribbble.com/shots/19419939-Admin-dashboard-analytics-UX
 //https://dribbble.com/shots/20203136-Citrix-Admin-Dashboard-Analytics-UX-UI

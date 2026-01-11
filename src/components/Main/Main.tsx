@@ -1,7 +1,7 @@
-import Sidebar from './Sidebar/Sidebar'
+import Sidebar from '../Sidebar/Sidebar'
 import { User } from 'firebase/auth'
 import { Outlet } from 'react-router-dom'
-import Right_Sidebar from './Dashboard/RightSidebar/Right_Sidebar'
+import Right_Sidebar from '../Dashboard/RightSidebar/Right_Sidebar'
 
 interface MainProps {
     user: User

@@ -1,5 +1,5 @@
 import { NavLink, useParams } from 'react-router-dom'
-import { useCurrentGroup } from '../../../../provider/CurrentGroupProvider'
+import { useCurrentGroup } from '../../../provider/CurrentGroupProvider';
 
 const Sidebar_CreateEvent = () => {
     const { currentGroup } = useCurrentGroup();

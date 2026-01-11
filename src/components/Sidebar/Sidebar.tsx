@@ -1,15 +1,14 @@
-import React from 'react'
-import CloseSidebarBtn from './Components/CloseSidebarBtn'
-import DashboardRedirect from './Components/DashboardRedirect'
-import Sidebar_Calendar from './Components/Sidebar_Calendar'
-import Sidebar_Chat from './Components/Sidebar_Chat'
-import Sidebar_Poll from './Components/Sidebar_Poll'
-import Sidebar_PastEvents from './Components/Sidebar_PastEvents'
-import Sidebar_Groups from './Components/Sidebar_Groups'
-import Sidebar_Profile from './Components/Sidebar_Profile'
-import Sidebar_Members from './Components/Sidebar_Members'
-import Sidebar_CreateEvent from './Components/Sidebar_CreateEvent'
-import { useCurrentGroup } from '../../../provider/CurrentGroupProvider'
+import DashboardRedirect from './Redirects/Sidebar_Dashboard'
+import Sidebar_Calendar from './Redirects/Sidebar_Calendar'
+import Sidebar_Chat from './Redirects/Sidebar_Chat'
+import Sidebar_Poll from './Redirects/Sidebar_Poll'
+import Sidebar_PastEvents from './Redirects/Sidebar_PastEvents'
+import Sidebar_Groups from './Redirects/Sidebar_Groups'
+import Sidebar_Profile from './Redirects/Sidebar_Profile'
+import Sidebar_Members from './Redirects/Sidebar_Members'
+import Sidebar_CreateEvent from './Redirects/Sidebar_CreateEvent'
+import { useCurrentGroup } from '../../provider/CurrentGroupProvider';
+import Sidebar_CreateGroup from './Redirects/Sidebar_CreateGroup';
 
 const Sidebar = () => {
     const { currentGroup } = useCurrentGroup();
@@ -43,6 +42,7 @@ const Sidebar = () => {
                     
                     <div className="pt-4 mt-2 border-t border-white/10">
                         <Sidebar_CreateEvent />
+                        <Sidebar_CreateGroup />
                     </div>
                 </nav>
             </div>
