@@ -18,13 +18,8 @@ const CreateEvent = () => {
     const { groupId } = useParams()
     const { currentGroup } = useCurrentGroup();
     const location = useLocation()
-    const currentUsersGroups = location.state.groups as Groups[]
-    console.log(currentUsersGroups)
+    // const currentUsersGroups = location.state.groups as Groups[]
     const [selectedGroup, setSelectedGroup] = useState<null | string>(null)
-
-    //https://dribbble.com/shots/14182509-Create-event
-    //https://dribbble.com/shots/18964945-Calendar-create-event
-    //https://dribbble.com/shots/3085179-Create-event-flow-Under-construction
 
     const { register, handleSubmit, formState: { errors } } = useForm<CreateEventInfo>({
         defaultValues: {
@@ -58,10 +53,6 @@ const CreateEvent = () => {
         }
     }
 
-    const toggleDropdownMenu = () => {
-
-    }
-
     return (
         <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 flex items-center justify-center p-4">
             <div className="bg-white dark:bg-[#1f1612] w-full max-w-[640px] rounded-xl shadow-2xl z-50 overflow-hidden flex flex-col max-h-[90vh]">
@@ -77,17 +68,18 @@ const CreateEvent = () => {
                 <form onSubmit={handleSubmit((data) => { handleFormSubmit(data) })} className="overflow-y-auto p-6 space-y-6">
 
                     {/* Group Selection */}
-                    {(!currentGroup?.id) && (
+                    {/* {(!currentGroup?.id) && (
                          <DropdownMenu
                             setSelectedGroup={setSelectedGroup}
                             selectedGroup={selectedGroup}
-                            currentUsersGroups={currentUsersGroups} />
-                    )}
+                            currentUsersGroups={currentUsersGroups} 
+                            />
+                    )} */}
 
                     {/* Event Title Input */}
                     <div className="flex flex-col gap-2">
                         <label className="text-[#181310] dark:text-white text-base font-medium leading-normal">Event Title</label>
-                        <input {...register("name")} className="form-input flex w-full rounded-lg text-[#181310] dark:text-white focus:outline-0 focus:ring-2 focus:ring-primary border border-[#e7deda] dark:border-white/10 bg-white dark:bg-white/5 h-14 placeholder:text-[#8d6d5e] p-[15px] text-base font-normal leading-normal" placeholder="e.g. Board Game Night" type="text"/>
+                        <input {...register("name")} className="form-input flex w-full rounded-lg text-[#181310] dark:text-white focus:outline-0 focus:ring-2 focus:ring-primary border border-[#e7deda] dark:border-white/10 bg-white dark:bg-white/5 h-14 placeholder:text-[#8d6d5e] p-[15px] text-base font-normal leading-normal" placeholder="e.g. Board Game Night" type="text" />
                     </div>
 
                     {/* Date & Time Row */}
@@ -112,7 +104,7 @@ const CreateEvent = () => {
                     <div className="flex flex-col gap-2">
                         <label className="text-[#181310] dark:text-white text-base font-medium leading-normal">Location</label>
                         <div className="flex w-full items-stretch rounded-lg group">
-                            <input {...register("address")} className="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg rounded-r-none border-r-0 text-[#181310] dark:text-white focus:outline-0 focus:ring-0 border border-[#e7deda] dark:border-white/10 bg-white dark:bg-white/5 h-14 placeholder:text-[#8d6d5e] p-[15px] text-base font-normal" placeholder="Add a place or virtual link"/>
+                            <input {...register("address")} className="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg rounded-r-none border-r-0 text-[#181310] dark:text-white focus:outline-0 focus:ring-0 border border-[#e7deda] dark:border-white/10 bg-white dark:bg-white/5 h-14 placeholder:text-[#8d6d5e] p-[15px] text-base font-normal" placeholder="Add a place or virtual link" />
                             <div className="text-[#8d6d5e] flex border border-[#e7deda] dark:border-white/10 bg-white dark:bg-white/5 items-center justify-center pr-[15px] rounded-r-lg">
                                 <span className="material-symbols-outlined">map</span>
                             </div>
@@ -127,15 +119,15 @@ const CreateEvent = () => {
 
                     {/* Extra Options */}
                     <div className="flex items-center justify-between py-2">
-                         <div className="flex items-center gap-3">
-                             <input {...register("urgent")} type="checkbox" className="w-5 h-5 rounded text-primary focus:ring-primary border-gray-300" />
-                             <span className="text-[#181310] dark:text-white font-medium">Urgent</span>
-                         </div>
+                        <div className="flex items-center gap-3">
+                            <input {...register("urgent")} type="checkbox" className="w-5 h-5 rounded text-primary focus:ring-primary border-gray-300" />
+                            <span className="text-[#181310] dark:text-white font-medium">Urgent</span>
+                        </div>
                     </div>
                 </form>
 
-                 {/* Modal Footer Actions */}
-                 <div className="p-6 border-t border-[#f5f1f0] dark:border-white/10 flex items-center justify-end gap-3 bg-[#fdfdfd] dark:bg-white/[0.02]">
+                {/* Modal Footer Actions */}
+                <div className="p-6 border-t border-[#f5f1f0] dark:border-white/10 flex items-center justify-end gap-3 bg-[#fdfdfd] dark:bg-white/[0.02]">
                     <Link to={currentGroup != null && currentGroup.id ? `/group/${currentGroup!.id}/dashboard` : "/"} className="px-6 h-12 flex items-center justify-center rounded-lg text-sm font-bold text-[#181310] dark:text-white bg-[#f5f1f0] dark:bg-white/10 hover:bg-[#ebe5e3] dark:hover:bg-white/20 transition-colors">
                         Cancel
                     </Link>

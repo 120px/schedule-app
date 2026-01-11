@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider, Navigate } from 'react-router-dom';
 import Dashboard from './components/Main/Dashboard/Dashboard';
 import CreateGroup from './components/Main/Dashboard/Groups/CreateGroup';
 import MyGroups from './components/Main/Dashboard/Groups/MyGroups';
@@ -36,6 +36,7 @@ const router = createBrowserRouter([
       {
         path: "/mygroups",
         element: <MyGroups />
+        
       },
       {
         path: "/group/:groupId/dashboard",
@@ -50,6 +51,12 @@ const router = createBrowserRouter([
       {
         path: "/myprofile",
         element: <Profile />,
+      },
+
+      // Catch-all route for unknown paths
+      {
+        path: "*",
+        element: <Navigate to="/" replace />,
       }
     ]
   },

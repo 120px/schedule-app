@@ -8,6 +8,7 @@ import Sidebar_PastEvents from './Components/Sidebar_PastEvents'
 import Sidebar_Groups from './Components/Sidebar_Groups'
 import Sidebar_Profile from './Components/Sidebar_Profile'
 import Sidebar_Members from './Components/Sidebar_Members'
+import Sidebar_CreateEvent from './Components/Sidebar_CreateEvent'
 import { useCurrentGroup } from '../../../provider/CurrentGroupProvider'
 
 const Sidebar = () => {
@@ -38,8 +39,11 @@ const Sidebar = () => {
                     <Sidebar_PastEvents />
                     {currentGroup && currentGroup?.id !== null ? <Sidebar_Members /> : null}
 
-                    {/* Groups Link (Moved here from settings as per MyGroups layout logic which elevates it) */}
                     <Sidebar_Groups />
+                    
+                    <div className="pt-4 mt-2 border-t border-white/10">
+                        <Sidebar_CreateEvent />
+                    </div>
                 </nav>
             </div>
 
