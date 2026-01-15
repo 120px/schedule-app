@@ -20,7 +20,7 @@ const Dashboard_Header: React.FC<Dashboard_feedProps> = ({ currentUser }) => {
         <div className="flex justify-between items-end mb-8">
             <div>
                 <h2 className="text-3xl font-black tracking-tight text-[#181310] dark:text-white">
-                    {currentGroup?.id !== null && currentGroup !== null ? currentGroup.name : `Welcome back, ${currentUser?.data.username || 'Friend'}!`}
+                    {`Welcome back, ${currentUser?.data.username || 'Friend'}!`}
                 </h2>
                 <p className="text-[#8d6d5e] dark:text-white/60 mt-1">You have events coming up this week.</p>
             </div>

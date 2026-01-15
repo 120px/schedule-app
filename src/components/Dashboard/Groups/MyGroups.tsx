@@ -25,7 +25,7 @@ const MyGroups = () => {
         if (userDataSnap.exists()) {
             const groups = userDataSnap.data().groups;
             if (groups)
-                getGroupData(groups)
+                await getGroupData(groups)
         } else {
             // Handle the case where the document doesn't exist
             console.log("No such document!");
@@ -75,7 +75,7 @@ const MyGroups = () => {
                     <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
                         <span className="material-symbols-outlined text-[#8d6d5e]">search</span>
                     </div>
-                    <input className="block w-full pl-11 pr-4 py-3 bg-white dark:bg-gray-800 border-none rounded-xl text-[#181310] dark:text-white placeholder:text-[#8d6d5e] shadow-sm focus:ring-2 focus:ring-primary/50 transition-all text-sm" placeholder="Search groups by name or keyword..." type="text"/>
+                    <input className="block w-full pl-11 pr-4 py-3 bg-white dark:bg-gray-800 border-none rounded-xl text-[#181310] dark:text-white placeholder:text-[#8d6d5e] shadow-sm focus:ring-2 focus:ring-primary/50 transition-all text-sm" placeholder="Search groups by name or keyword..." type="text" />
                 </div>
             </div>
 
@@ -86,9 +86,9 @@ const MyGroups = () => {
                         {userGroups!.map(group =>
                             <GroupTile key={group.id} group={group}></GroupTile>
                         )}
-                         
+
                         {/* Add New Group Card (as displayed in design) */}
-                         <Link to="/creategroup" className="flex flex-col items-center justify-center rounded-xl border-2 border-dashed border-gray-200 dark:border-gray-700 bg-white/50 dark:bg-gray-800/30 p-10 hover:border-primary/50 hover:bg-primary/5 transition-all group min-h-[350px]">
+                        <Link to="/creategroup" className="flex flex-col items-center justify-center rounded-xl border-2 border-dashed border-gray-200 dark:border-gray-700 bg-white/50 dark:bg-gray-800/30 p-10 hover:border-primary/50 hover:bg-primary/5 transition-all group min-h-[350px]">
                             <div className="size-16 rounded-full bg-gray-50 dark:bg-gray-700 flex items-center justify-center mb-4 group-hover:bg-primary group-hover:text-white transition-colors">
                                 <span className="material-symbols-outlined text-3xl">add</span>
                             </div>
